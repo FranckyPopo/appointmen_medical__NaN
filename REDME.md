@@ -1,4 +1,11 @@
-La page d’accueil [x]
-La page de recherche [x]
-La Page détaille [x] 
-La page d’inscription pour les utilisateurs inscrire sur le site 1 [x]
+- Ajouter l'utilité de mon site sur la page d'acceuil
+- Création de la page d'inscription pour les centres de centés
+- Création de la page de connection pour les centres de centés
+CENTRES DE SENTés
+    - Ajouter la fonctionnalité ajout d'un nouveau service
+    - Ajouter la fonctionnalité suppresion d'un service
+    - Ajouter la fonctionnalité modifier un un service
+
+- Crée une page pour voir toutes centres de santés
+- Implémenter la fonctionnalité de recherche 
+- Implémenter la fonctionnalité prendre un rendez-vous
