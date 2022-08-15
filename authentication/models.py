@@ -6,6 +6,9 @@ class RepeatFields(models.Model):
     active = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        abstract = True
 
 class Country(RepeatFields):
     name = models.CharField(max_length=150)
@@ -48,7 +51,7 @@ class User(AbstractUser, RepeatFields):
         null=True,
     )
     town = models.ForeignKey(
-        town,
+        Town,
         models.SET_NULL,
         null=True,
     )

@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'authentication',
+    'user',
+    'front',
     'phonenumber_field',
 ]
 
@@ -124,4 +126,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_MODEL_USER = "authentication.User"
+AUTH_USER_MODEL = "authentication.User"
