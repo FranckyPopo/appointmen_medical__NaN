@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'user',
     'front',
     'phonenumber_field',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
