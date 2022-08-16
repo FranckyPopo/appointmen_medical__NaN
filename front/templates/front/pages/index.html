@@ -9,7 +9,7 @@
     <meta name="keywords" content="Aesthetic, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Aesthetic | Template</title>
+    <title>Aesthetic | Accueil</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
@@ -83,14 +83,18 @@
     <!-- Header Section End -->
 
     <!-- Hero Section Begin -->
-    <section class="hero spad set-bg" data-setbg="{% static 'front/img/hero-bg.jpg' %}">
+    <section class="hero spad set-bg" data-setbg="{% static 'front/img/urgengo-teleconsultation-pharmacie-h3.png__940x480_q70_crop_subsampling-2_upscale.png' %}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="hero__text">
-                        <span>Eiusmod tempor incididunt </span>
-                        <h2>Take the world's best quality Treadment</h2>
-                        <a href="#" class="primary-btn normal-btn">Contact us</a>
+                        <span>Le savoir et la santé à votre portée.</span>
+                        <h2>
+                            Inutile de vous déplacer pour en savoir davantage.
+                        </h2>
+                        <a href="#" class="primary-btn normal-btn">
+                            Consultez les centres de santé
+                        </a>
                     </div>
                 </div>
             </div>
@@ -99,7 +103,7 @@
     <!-- Hero Section End -->
 
     <!-- Consultation Section Begin -->
-    <section class="consultation">
+    {% comment %} <section class="consultation">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
@@ -150,7 +154,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> {% endcomment %}
     <!-- Consultation Section End -->
 
     <!-- Chooseus Section Begin -->
@@ -159,8 +163,8 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="section-title">
-                        <span>Why choose us?</span>
-                        <h2>Offer for you</h2>
+                        <span>POURQUOI NOUS CHOISIR ?</span>
+                        <h2>Quel intérêt pour vous ?</h2>
                     </div>
                 </div>
             </div>
@@ -168,15 +172,32 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="chooseus__item">
                         <img src="{% static 'front/img/icons/ci-1.png' %}" alt="">
-                        <h5>Advanced equipment</h5>
-                        <p>Lorem ipsum amet, consectetur adipiscing elit, sed do eiusmod tempor cididunt facilisis.</p>
+                        <h5>Simple a utiliser.</h5>
+                        <p>
+                            L'intérêt de cette plate-forme est qu'elle est simple et intuitive. 
+                        </p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="chooseus__item">
                         <img src="{% static 'front/img/icons/ci-2.png' %}" alt="">
-                        <h5>Qualified doctors</h5>
-                        <p>Lorem ipsum amet, consectetur adipiscing elit, sed do eiusmod tempor cididunt facilisis.</p>
+                        <h5>Tout dans un même lieu.</h5>
+                        <p>
+                            Health access à été conçu pour que vous trouviez toutes les informations
+                            dont vous aviez besoin dans un centre santé (address, numéro de télephone,
+                            service disponible ...).
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="chooseus__item">
+                        <img src="{% static 'front/img/icons/ci-2.png' %}" alt="">
+                        <h5>Economiser votre temps.</h5>
+                        <p>
+                            Plus besoins de vous déplacer dans un centre de santé pour avoir des informations
+                            sur cet dernier grâce à Health access vous avez tout à votre disposition et cela est
+                            un gain de temps considérable. 
+                        </p>
                     </div>
                 </div>
             </div>
@@ -190,61 +211,56 @@
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-sm-6">
                     <div class="section-title">
-                        <span>Our services</span>
-                        <h2>Offer for you</h2>
+                        <span>centres de santé</span>
+                        <h2>
+                            Vous être un centre médical et vous vous demandé 
+                            comment vous inscrire ?
+                        </h2>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="services__btn">
-                        <a href="#" class="primary-btn">Contact us</a>
+                        <a href="#" class="primary-btn">Incrivez vous ?</a>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="services__item">
-                        <div class="services__item__icon">
-                            <span class="flaticon-044-aesthetic"></span>
-                        </div>
                         <div class="services__item__text">
-                            <h5>Body procedures</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor aliqua.
+                            <h5>Étape 1</h5>
+                            <p>
+                                Cliquer sur le bouton inscriver vous.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="services__item">
-                        <div class="services__item__icon">
-                            <span class="flaticon-027-beauty"></span>
-                        </div>
                         <div class="services__item__text">
-                            <h5>Facial Procedures</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor aliqua.
+                            <h5>Étape 2</h5>
+                            <p>
+                                Remplisez le formulaire dans l'intégralité.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="services__item">
-                        <div class="services__item__icon">
-                            <span class="flaticon-031-anatomy"></span>
-                        </div>
                         <div class="services__item__text">
-                            <h5>Breast procedures</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor aliqua.
+                            <h5>Étape 3</h5>
+                            <p>
+                                Vous recevrez un courrier électronique pour confirmer votre inscription.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="services__item">
-                        <div class="services__item__icon">
-                            <span class="flaticon-008-abdominoplasty"></span>
-                        </div>
                         <div class="services__item__text">
-                            <h5>Skin care & Beauty</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor aliqua.
+                            <h5>Étape 4</h5>
+                            <p>
+                                Une fois votre inscription confirmée, vous serez redirigés vers la page de connexion.
                             </p>
                         </div>
                     </div>
@@ -253,49 +269,6 @@
         </div>
     </section>
     <!-- Services Section End -->
-
-    <!-- Team Section Begin -->
-    <section class="team spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="section-title">
-                        <span>Our Team</span>
-                        <h2>Our Expert Doctors</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="team__item">
-                        <img src="{% static 'front/img/team/team-1.jpg' %}" alt="">
-                        <h5>Caroline Grant</h5>
-                        <span>Plastic surgeon</span>
-                        <div class="team__item__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-dribbble"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="team__item">
-                        <img src="{% static 'front/img/team/team-2.jpg' %}" alt="">
-                        <h5>Dr. Maria Angel</h5>
-                        <span>Plastic surgeon</span>
-                        <div class="team__item__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-dribbble"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Team Section End -->
 
     <!-- Footer Section Begin -->
     <footer class="footer">
