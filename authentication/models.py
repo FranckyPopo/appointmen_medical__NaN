@@ -35,10 +35,10 @@ class User(AbstractUser, RepeatFields):
     medical_center_name = models.CharField(max_length=150)
     address = models.CharField(max_length=150)
     description = models.TextField()
-    phone_number = PhoneNumberField(region="CI", blank=True)
+    phone_number = PhoneNumberField(region="CI")
     phone_number_two = PhoneNumberField(region="CI", blank=True)
     fax = PhoneNumberField(region="CI", blank=True)
-    photo = models.ImageField(blank=True)
+    photo = models.ImageField(blank=True, upload_to="photo_user")
     
     country = models.ForeignKey(
         Country,
