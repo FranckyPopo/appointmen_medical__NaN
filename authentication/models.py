@@ -72,7 +72,7 @@ class AccountVerification(RepeatFields):
         null=True,
     )
     
-    token = models.UUIDField(default=uuid.uuid4, unique=True)
+    token = models.UUIDField(default=uuid.uuid4)
 
     def __str__(self):
         return f"{self.user}" or f"{self.token}"
