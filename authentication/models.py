@@ -60,6 +60,7 @@ class User(AbstractUser, RepeatFields):
         models.SET_NULL,
         null=True,
     )
+    is_verification_account = models.BooleanField(default=False)
     
 class AccountVerification(RepeatFields):
     user = models.OneToOneField(
