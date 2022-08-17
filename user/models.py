@@ -6,7 +6,7 @@ from authentication.models import RepeatFields
 
 class Service(RepeatFields):
     name = models.CharField(max_length=150)
-    active = models.BooleanField(default=True)
+    active = models.BooleanField(default=True) 
     description = models.TextField()
 
 class Appointmen(RepeatFields):

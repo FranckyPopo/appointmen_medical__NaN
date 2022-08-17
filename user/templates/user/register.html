@@ -29,7 +29,7 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="contact__form">
                                 <h3>Incrivez vous.</h3>
-                                <form action="{% url 'user_register' %}" method="POST">
+                                <form action="{% url 'authentication_register' %}" method="POST">
                                     {% csrf_token %}
                                     {% render_field form.medical_center_name placeholder="Nom du centre medical" %}
                                     {% render_field form.email placeholder="Email" %}

@@ -62,14 +62,19 @@ class User(AbstractUser, RepeatFields):
     )
     is_verification_account = models.BooleanField(default=False)
     
+    def __str__(self):
+        return self.username or self.medical_center_name
+        
 class AccountVerification(RepeatFields):
     user = models.OneToOneField(
         User, 
         on_delete=models.SET_NULL, 
         null=True,
     )
+    
     token = models.UUIDField(default=uuid.uuid4, unique=True)
 
-
+    def __str__(self):
+        return f"{self.user}" or f"{self.token}"
 
 
