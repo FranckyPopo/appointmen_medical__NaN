@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import View
 from django.http import HttpResponse
 
 from authentication.forms import AuthenticationFormRegister
+from authentication.models import AccountVerification
 
 class AuthenticationRegister(View):
     template_name = "user/register.html"
@@ -21,3 +22,21 @@ class AuthenticationRegister(View):
             form.save()
             return HttpResponse("Compte créé")
         return HttpResponse("Impossible de créé le Compte")
+    
+    
+class AuthenticationVerificationAccount(View):
+    def get(self, request, token): 
+        user = get_object_or_404(
+            AccountVerification, 
+            token=token
+        ).user
+        user.is_verification_account = True
+        user.save()
+        
+        return HttpResponse("Compte activé")
+    
+    
+    
+    
+    
+    
