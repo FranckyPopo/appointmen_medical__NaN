@@ -2,8 +2,9 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from phonenumber_field.modelfields import PhoneNumberField
 
+import uuid
+
 class RepeatFields(models.Model):
-    active = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     
@@ -12,9 +13,12 @@ class RepeatFields(models.Model):
 
 class Country(RepeatFields):
     name = models.CharField(max_length=150)
+    active = models.BooleanField(default=True)
+
     
 class City(RepeatFields):
     name = models.CharField(max_length=150)
+    active = models.BooleanField(default=True)
     country = models.ForeignKey(
         Country,
         on_delete=models.SET_NULL,
@@ -23,7 +27,8 @@ class City(RepeatFields):
     )
 
 class Town(RepeatFields):
-    name = models.CharField(max_length=150)
+    name = models.CharField(max_length=150) 
+    active = models.BooleanField(default=True)
     city = models.ForeignKey(
         City,
         on_delete=models.SET_NULL,
@@ -56,7 +61,13 @@ class User(AbstractUser, RepeatFields):
         null=True,
     )
     
-    
+class AccountVerification(RepeatFields):
+    user = models.OneToOneField(
+        User, 
+        on_delete=models.SET_NULL, 
+        null=True,
+    )
+    token = models.UUIDField(default=uuid.uuid4, unique=True)
 
 
 
