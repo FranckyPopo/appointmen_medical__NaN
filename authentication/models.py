@@ -14,7 +14,6 @@ class RepeatFields(models.Model):
 class Country(RepeatFields):
     name = models.CharField(max_length=150)
     active = models.BooleanField(default=True)
-
     
 class City(RepeatFields):
     name = models.CharField(max_length=150)
@@ -37,6 +36,9 @@ class Town(RepeatFields):
     )
 
 class User(AbstractUser, RepeatFields):
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username"]
+    email = models.EmailField(unique=True)
     medical_center_name = models.CharField(max_length=150)
     address = models.CharField(max_length=150)
     description = models.TextField()
@@ -78,3 +80,16 @@ class AccountVerification(RepeatFields):
         return f"{self.user}" or f"{self.token}"
 
 
+   
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            

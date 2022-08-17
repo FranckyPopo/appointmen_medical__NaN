@@ -19,7 +19,9 @@ class AuthenticationFormRegister(UserCreationForm, forms.ModelForm):
     email = forms.EmailField(required=True)    
 
 
-
+class AuthenticationFormLogin(forms.Form):
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput())
 
 
 

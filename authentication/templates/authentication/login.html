@@ -9,10 +9,10 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <div class="breadcrumb__text">
-                            <h2>Contact</h2>
+                            <h2>Connection</h2>
                             <div class="breadcrumb__links">
                                 <a href="{% url 'front_index' %}">Home</a>
-                                <span>Register</span>
+                                <span>Connection</span>
                             </div>
                         </div>
                     </div>
@@ -28,16 +28,12 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
                             <div class="contact__form">
-                                <h3>Incrivez vous.</h3>
-                                <form action="{% url 'authentication_register' %}" method="POST">
+                                <h3>Connecter vous.</h3>
+                                <form action="{% url 'authentication_login' %}" method="POST">
                                     {% csrf_token %}
-                                    {% render_field form.medical_center_name placeholder="Nom du centre medical" %}
                                     {% render_field form.email placeholder="Email" %}
-                                    {% render_field form.phone_number placeholder="Numéro de téléphone" %}
-                                    {% render_field form.address placeholder="Veuillez entrer l address du centre" %}
-                                    {% render_field form.password1 placeholder="Mot de passe" %}
-                                    {% render_field form.password2 placeholder="Confirmer le mot de passe" %}
-                                    <button type="submit" class="site-btn">S'incrire</button>
+                                    {% render_field form.password placeholder="Mot de passe" %}
+                                    <button type="submit" class="site-btn">Se connecter</button>
                                 </form>
                             </div>
                         </div>

@@ -1,12 +1,13 @@
 from django.urls import path
 
-from authentication.views import AuthenticationRegister, AuthenticationVerificationAccount
+from authentication import views
 
 urlpatterns = [
-    path("register/", AuthenticationRegister.as_view(), name="authentication_register"),
+    path("register/", views.AuthenticationRegister.as_view(), name="authentication_register"),
+    path("login/", views.AuthenticationLogin.as_view(), name="authentication_login"),
     path(
         "verification-account/<uuid:token>", 
-        AuthenticationVerificationAccount.as_view(), 
+        views.AuthenticationVerificationAccount.as_view(), 
         name="authentication_verification_account"
     ),    
 

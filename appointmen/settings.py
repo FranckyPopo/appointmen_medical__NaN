@@ -136,3 +136,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'afrifranck2003@gmail.com'
 EMAIL_HOST_PASSWORD = 'mstrufcnqukdqvkl'
 EMAIL_PORT = 587
+
+# Moteur d'authentification
+AUTHENTICATION_BACKENkDS = ["authentication.backends.MyBackend", "django.contrib.auth.backends.ModelBackend"]
+
