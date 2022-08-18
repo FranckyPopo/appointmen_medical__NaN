@@ -1,14 +1,14 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from django.http import HttpResponse
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, logout
+from django.contrib import messages
 
-from authentication.forms import AuthenticationFormRegister, AuthenticationFormLogin
-from authentication.models import AccountVerification
+from authentication import forms, models, backends
 
 class AuthenticationRegister(View):
     template_name = "authentication/register.html"
-    form_class = AuthenticationFormRegister
+    form_class = forms.AuthenticationFormRegister
 
     def get(self, request):
         context = {
@@ -17,16 +17,21 @@ class AuthenticationRegister(View):
         return render(request, self.template_name, context=context)
     
     def post(self, request):
+        message = "Un email de confirmation vous a été envoyé"
         form = self.form_class(request.POST)
+        context = {
+            "form": form
+        }
 
         if form.is_valid():
             form.save()
-            return HttpResponse("Compte créé")
-        return HttpResponse("Impossible de créé le Compte")
+            messages.add_message(request, messages.SUCCES, message)
+            return redirect("authentication_login")
+        return render(request, self.template_name, context=context)
     
 class AuthenticationLogin(View):
     template_name = "authentication/login.html"
-    form_class = AuthenticationFormLogin
+    form_class = forms.AuthenticationFormLogin
 
     def get(self, request):
         context = {
@@ -38,13 +43,11 @@ class AuthenticationLogin(View):
         form = self.form_class(request.POST)
 
         if form.is_valid():
-            print(authenticate)
-            user = authenticate(
-                request,
+            user = backends.MyBackend.authenticate(
+                self,
                 email=request.POST.get("email", ""),
                 password=request.POST.get("password", ""),
             ) 
-            print(user)
 
             if user:
                 #logint(request, user)
@@ -55,7 +58,7 @@ class AuthenticationLogin(View):
 class AuthenticationVerificationAccount(View):
     def get(self, request, token): 
         user = get_object_or_404(
-            AccountVerification, 
+            models.AccountVerification, 
             token=token
         ).user
         user.is_verification_account = True

@@ -1,11 +1,18 @@
 from django.contrib.auth.backends import BaseBackend
+from django.contrib.auth import get_user_model
 
 # Moteur d'authentification  
 class MyBackend(BaseBackend):
-    def authenticate(self, request, email=None, password=None):
+    USERS = get_user_model()
+    
+    def authenticate(self, request=None, email=None, password=None):
         try:
-            user = User.objects.get(email=email, is_verification_account=True)
-            if user.check_password(password):                   
+            user = MyBackend.USERS.objects.get(
+                email=email, 
+                is_verification_account=True,
+                is_active=True,
+            )
+            if user.check_password(password):  
                 return user
             return None
         except:
@@ -13,7 +20,7 @@ class MyBackend(BaseBackend):
          
     def get_user(self, user_id):
         try:
-            return User.objects.get(pk=user_id)
+            return MyBackend.USERS.objects.get(pk=user_id)
         except:
             return None
             

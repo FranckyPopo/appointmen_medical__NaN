@@ -31,12 +31,39 @@
                                 <h3>Incrivez vous.</h3>
                                 <form action="{% url 'authentication_register' %}" method="POST">
                                     {% csrf_token %}
+
                                     {% render_field form.medical_center_name placeholder="Nom du centre medical" %}
+                                    {% if form.medical_center_name.errors  %}
+                                     <div><p class="error-form">Ce champ est obligatoire.</p></div> 
+                                    {% endif %}
+
                                     {% render_field form.email placeholder="Email" %}
+                                    {% if form.email.errors  %}
+                                     <div><p class="error-form">Veuillez entrer une addresse valide</p></div> 
+                                    {% endif %}
+                                    
                                     {% render_field form.phone_number placeholder="Numéro de téléphone" %}
+                                    {% if form.phone_number.errors  %}
+                                     <div><p class="error-form">Veuillez entrer un numéro valide par exemple: 01 02 ** ** **</p></div> 
+                                    {% endif %}
+
                                     {% render_field form.address placeholder="Veuillez entrer l address du centre" %}
+                                    {% if form.address.errors  %}
+                                        <div><p class="error-form">Ce champ est obligatoire.</p></div> 
+                                    {% endif %}
+
                                     {% render_field form.password1 placeholder="Mot de passe" %}
+                                    {% if form.password1.errors  %}
+                                        {% for error in form.password1.errors %}{% endfor %}
+                                        <div><p class="error-form">{{form.password1.errors}}</p></div> 
+                                    {% endif %}
+                                    
                                     {% render_field form.password2 placeholder="Confirmer le mot de passe" %}
+                                    {% if form.password2.errors  %}
+                                    {% for error in form.password2.errors %}{% endfor %}
+                                        <div><p class="">{{form.password2.errors}}</p></div> 
+                                    {% endif %}
+                                    
                                     <button type="submit" class="site-btn">S'incrire</button>
                                 </form>
                             </div>

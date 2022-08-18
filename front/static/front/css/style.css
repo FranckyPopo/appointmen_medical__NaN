@@ -32,6 +32,15 @@
 /* Template default CSS
 /*----------------------------------------*/
 
+.error-form {
+	color: rgb(241, 10, 10);
+}
+
+.errorlist li {
+	color: rgb(241, 10, 10);
+	list-style: none;
+}
+
 html,
 body {
 	height: 100%;
