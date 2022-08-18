@@ -60,7 +60,9 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="{% static 'front/img/logo.png' %}" alt=""></a>
+                        <a href="./index.html">
+                            <img style="max-width: 100%; position: relative; top: -60px; height: 168px;" src="{% static 'front/img/Health_access.png' %}" alt="">
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-10">
@@ -171,7 +173,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="chooseus__item">
-                        <img src="{% static 'front/img/icons/ci-1.png' %}" alt="">
+                        <img src="{% static 'front/img/icons/ci-3.png' %}" alt="">
                         <h5>Simple a utiliser.</h5>
                         <p>
                             L'intérêt de cette plate-forme est qu'elle est simple et intuitive. 
@@ -191,7 +193,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="chooseus__item">
-                        <img src="{% static 'front/img/icons/ci-2.png' %}" alt="">
+                        <img src="{% static 'front/img/icons/ci-4.png' %}" alt="">
                         <h5>Economiser votre temps.</h5>
                         <p>
                             Plus besoins de vous déplacer dans un centre de santé pour avoir des informations
@@ -220,7 +222,7 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="services__btn">
-                        <a href="#" class="primary-btn">Incrivez vous ?</a>
+                        <a href="{% url 'authentication_register' %}" class="primary-btn">Incrivez vous ?</a>
                     </div>
                 </div>
             </div>
@@ -277,14 +279,6 @@
                     <div class="col-lg-4 col-md-4">
                         <div class="footer__logo">
                             <a href="#"><img src="{% static 'front/img/footer-logo.png' %}" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-8">
-                        <div class="footer__newslatter">
-                            <form action="#">
-                                <input type="text" placeholder="Email">
-                                <button type="submit" class="site-btn">Subscribe</button>
-                            </form>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12">

@@ -62,7 +62,9 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="header__logo">
-                        <a href="{% url 'front_index' %}"><img src="img/logo.png" alt=""></a>
+                        <a href="{% url 'front_index' %}">
+                            <img style="max-width: 100%; position: relative; top: -60px; height: 168px;" src="{% static 'front/img/Health_access.png' %}" alt="">
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-10">
@@ -93,15 +95,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-4">
                         <div class="footer__logo">
-                            <a href="#"><img src="img/footer-logo.png" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-8">
-                        <div class="footer__newslatter">
-                            <form action="#">
-                                <input type="text" placeholder="Email">
-                                <button type="submit" class="site-btn">Subscribe</button>
-                            </form>
+                            <a href="#"><img src="{% static 'front/img/footer-logo.png' %}" alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12">

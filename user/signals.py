@@ -24,7 +24,7 @@ def sending_registration_confirmation_email(instance, created, **kwargs):
         Cliquer sur le lien pour l'activer: http://127.0.0.1:8000{url}
         """
         # Envoie email    
-        email = EmailMessage('Création du compte', body, to=[email_centre])
+        email = EmailMessage('Bienvenue sur Health access', body, to=[email_centre])
         email.send()
 
 

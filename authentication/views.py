@@ -25,7 +25,7 @@ class AuthenticationRegister(View):
 
         if form.is_valid():
             form.save()
-            messages.add_message(request, messages.SUCCES, message)
+            messages.add_message(request, messages.SUCCESS, message)
             return redirect("authentication_login")
         return render(request, self.template_name, context=context)
     
@@ -41,6 +41,7 @@ class AuthenticationLogin(View):
     
     def post(self, request):
         form = self.form_class(request.POST)
+        message = "Les identifiants que vous avez entrer son incorrect."
 
         if form.is_valid():
             user = backends.MyBackend.authenticate(
@@ -52,17 +53,19 @@ class AuthenticationLogin(View):
             if user:
                 #logint(request, user)
                 return HttpResponse("connection réussite")
-        return HttpResponse("connection echoué")
+        messages.add_message(request, messages.ERROR, message)
+        return redirect("authentication_login")
             
     
 class AuthenticationVerificationAccount(View):
     def get(self, request, token): 
+        message = "Vôtre compte a été activé avec success"
         user = get_object_or_404(
             models.AccountVerification, 
             token=token
         ).user
         user.is_verification_account = True
         user.save()
-        
-        return HttpResponse("Compte activé")
+        messages.add_message(request, messages.SUCCESS, message)
+        return redirect("authentication_login")
     
