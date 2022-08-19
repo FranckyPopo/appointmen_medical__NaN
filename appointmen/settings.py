@@ -143,3 +143,6 @@ AUTHENTICATION_BACKENkDS = [
     os.path.join(BASE_DIR, "authentication.backends.MyBackend"),
     "django.contrib.auth.backends.ModelBackend"
 ]
+
+
+LOGIN_URL = "authentication_login"

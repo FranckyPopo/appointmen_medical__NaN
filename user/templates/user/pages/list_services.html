@@ -1,0 +1,80 @@
+{% extends 'user/base/base.html' %}
+{% load static %}
+
+{% block "content" %}
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option spad set-bg" data-setbg="{% static 'front/img/breadcrumb-bg.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Liste services</h2>
+                    <div class="breadcrumb__links">
+                        <a href="{% url 'front_index' %}">Accueil</a>
+                        <span>List services</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<section class="contact spad">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for service in services %}
+                <div class="col-sm-6">
+                    <div class="card" >
+                        <div class="card-body">
+                            <h5 class="card-title" hx-post="{% url 'user_delete_service' service.pk %}">{{ service.name }}</h5>
+                            <p class="card-text">{{ service.description }}</p>
+                            <form method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <a 
+                                    type="Submit"
+                                    class="btn btn-danger"
+                                    hx-post="{% url 'user_delete_service' service.pk %}"
+                                    hx-swap="outerHTML"
+                                    hx-target="closest .col-sm-6"
+                                    hx-trigger="click"
+                                    hx-confirm="Êtes-vous sûr ?">
+                                    Supprimer
+                                </a>
+                            </form>
+                            
+                            <a href="#" class="btn btn-primary">Modifier</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+                <h2>Vous n'avez pas encore ajouté de service</h2>
+            {% endfor %}
+    </div>
+</section>
+
+
+{% endblock "content" %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
