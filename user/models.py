@@ -1,11 +1,18 @@
 from django.db import models
 from django.conf import settings 
+from django.core.validators import MinValueValidator
 from phonenumber_field.modelfields import PhoneNumberField
 
 from authentication.models import RepeatFields
 
 class Service(RepeatFields):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="service_user",
+    )
     name = models.CharField(max_length=150)
+    price = models.PositiveIntegerField(validators=[MinValueValidator(1, "entrer un valeur supérieur à 0")])
     active = models.BooleanField(default=True) 
     description = models.TextField()
 

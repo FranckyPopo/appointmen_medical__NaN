@@ -1,9 +1,9 @@
 from django.urls import path
 
-from user.views import UserDashbord
+from user.views import UserAddService
 
 urlpatterns = [
-    path("dashbord/", UserDashbord.as_view(), name="user_dashbord"),    
+    path("dashbord/add-service/", UserAddService.as_view(), name="user_add_service"),   
 
     
 ]

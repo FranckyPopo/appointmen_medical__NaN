@@ -1,0 +1,116 @@
+{% extends 'user/base/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block "content" %}
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option spad set-bg" data-setbg="{% static 'front/img/breadcrumb-bg.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Service</h2>
+                    <div class="breadcrumb__links">
+                        <a href="{% url 'front_index' %}">Accueil</a>
+                        <span>add service</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- Contact Section Begin -->
+<section class="contact spad">
+    <div class="container">
+        <div class="contact__content">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="contact__pic">
+                        <img src="{% static 'front/img/4950247_19834.jpg' %}" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="contact__form">
+                        <h3>Ajouter un nouveaux service</h3>
+                        <form action="{% url 'user_add_service' %}" method="POST">
+                            {% csrf_token %}
+                            {% render_field form.name placeholder="Nom du service" %}
+                            {% if form.name.errors  %}
+                                <div>{{form.name.errors}}</div> 
+                            {% endif %}
+                            
+                            {% render_field form.price placeholder="Entrer un prix" %}
+                            {% if form.price.errors  %}
+                                <div>{{form.price.errors}}</div> 
+                            {% endif %}
+                            
+                            {% render_field form.description placeholder="Entrer un description claire du service" %}
+                            {% if form.description.errors  %}
+                                <div>{{form.description.errors}}</div> 
+                            {% endif %}
+                        
+                            <button type="submit" class="site-btn">Ajouter le service</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact Section End -->
+
+
+
+{% endblock "content" %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

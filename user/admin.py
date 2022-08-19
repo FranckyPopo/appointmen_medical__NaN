@@ -5,8 +5,7 @@ from user import models
 
 @admin.register(models.Service)
 class Service(admin.ModelAdmin):
-    class Meta:
-        list_display = "__all__"
+    list_display = ["name", "price", "description", "created", "updated"]
     
 @admin.register(models.Appointmen)
 class Appointmen(admin.ModelAdmin):
