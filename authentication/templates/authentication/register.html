@@ -44,7 +44,7 @@
                                     
                                     {% render_field form.phone_number placeholder="Numéro de téléphone" %}
                                     {% if form.phone_number.errors  %}
-                                        <div><p class="error-form">{{form.phone_number.errors}}</p></div> 
+                                        <div>{{form.phone_number.errors}}</div> 
                                     {% endif %}
 
                                     {% render_field form.address placeholder="Veuillez entrer l address du centre" %}
@@ -55,16 +55,16 @@
                                     {% render_field form.password1 placeholder="Mot de passe" %}
                                     {% if form.password1.errors  %}
                                         {% for error in form.password1.errors %}{% endfor %}
-                                        <div><p class="error-form">{{form.password1.errors}}</p></div> 
+                                        <div>{{form.password1.errors}}</div> 
                                     {% endif %}
                                     
                                     {% render_field form.password2 placeholder="Confirmer le mot de passe" %}
                                     {% if form.password2.errors  %}
                                     {% for error in form.password2.errors %}{% endfor %}
-                                        <div><p>{{form.password2.errors}}</p></div> 
+                                        <div>{{form.password2.errors}}</div> 
                                     {% endif %}
                                     
-                                    <button type="submit" class="site-btn">S'incrire</button>
+                                    <button type="submit" class="site-btn" style="margin-top: 20px;">S'incrire</button>
                                     <div style="margin-top: 25px;">
                                         Cliquez <a href={% url 'authentication_login' %}>ici</a> 
                                         pour vous connecter

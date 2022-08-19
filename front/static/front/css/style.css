@@ -311,11 +311,12 @@ ol {
 }
 
 .header__logo {
-	padding: 42px 0;
+	padding: 20px 0px 0px 0px;
 }
 
 .header__logo a {
 	display: inline-block;
+	height: 110px;
 }
 
 .header__menu__option {
@@ -2278,10 +2279,6 @@ ol {
 .contact__widget__text p {
 	font-weight: 300;
 	margin-bottom: 0;
-}
-
-.contact__content {
-	padding-top: 70px;
 }
 
 .contact__pic img {
