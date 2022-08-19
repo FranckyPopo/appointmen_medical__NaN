@@ -8,5 +8,4 @@ CENTRES DE SENTés
 
 - Implémenter la fonctionnalité de recherche 
 - Implémenter la fonctionnalité prendre un rendez-vous
-- Crée une page pour voir toutes centres de santés
-- Dynamiser la page contact
+- Crée une page pour voir toutes 685ac
