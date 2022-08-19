@@ -11,4 +11,4 @@ CENTRES DE SENTés
 - Implémenter la fonctionnalité prendre un rendez-vous
 - changer le logo 
 - Crée un page qui va permetre au proprietaire de centre de modifier leurs informations
-
+NUMERO PAPE: +2250171079968 
