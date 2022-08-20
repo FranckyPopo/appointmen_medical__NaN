@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 
-from user.forms import FormService
+from user.forms import FormService, FormEditUser
 from user.models import Service
 
 class UserAddService(LoginRequiredMixin, View):         
@@ -31,13 +32,18 @@ class UserAddService(LoginRequiredMixin, View):
                 return HttpResponse("Le service existe déjà")
             
             Service.objects.create(name=name, price=price, description=description, user=user)
+            messages.add_message(
+                request, 
+                messages.SUCCESS, 
+                f"Vous venez d'ajouter le service {name}"
+            )
             return redirect("user_list_services")
         return render(request, self.template_name, context=context)
             
 class UserListService(LoginRequiredMixin, View):
     def get(self, request):
         context = {
-            "services": Service.objects.filter(user=request.user, active=True),
+            "services": Service.objects.filter(user=request.user, active=True).order_by("name"),
         }
         
         return render(request, "user/pages/list_services.html", context=context)
@@ -74,5 +80,18 @@ class UserEditService(LoginRequiredMixin, View):
             service.price = request.POST.get("price")
             service.description = request.POST.get("description")
             service.save()
+            messages.add_message(
+                request, 
+                messages.SUCCESS, 
+                f"Vous venez de modifier le service {service.name}"
+            )
             return redirect("user_list_services")
         return render(request, self.template_name, context=context)
+
+class UserEditProfile(LoginRequiredMixin, View):
+    template_name = "user/pages/edit_user_profile.html"
+    form_class = FormEditUser
+
+    def get(self, request):
+
+        return render(request, self.template_name, context={"form": self.form_class})
