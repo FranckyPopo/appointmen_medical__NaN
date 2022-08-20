@@ -3,11 +3,10 @@ from django import forms
 from user.models import Service
 
 
-class FormAddService(forms.ModelForm):
+class FormService(forms.ModelForm):
     class Meta:
         model = Service
-        fields = ["name", "price", "description"]
-        
+        fields = ["name", "price", "description",]
         
         
         

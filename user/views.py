@@ -3,12 +3,12 @@ from django.views import View
 from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from user.forms import FormAddService
+from user.forms import FormService
 from user.models import Service
 
 class UserAddService(LoginRequiredMixin, View):         
     template_name = "user/pages/add_service.html"
-    form_class = FormAddService
+    form_class = FormService
     
     def get(self, request):
         context = {
@@ -47,5 +47,32 @@ class UserDeleteService(LoginRequiredMixin, View):
         service = get_object_or_404(Service, pk=pk_service, active=True, user=request.user)
         service.delete()
         return HttpResponse("")
-            
-            
+
+class UserEditService(LoginRequiredMixin, View):
+    template_name = "user/pages/edit_service.html"
+    form_class = FormService
+    model = Service
+
+    def get(self, request, pk_service):
+        service = get_object_or_404(Service, pk=pk_service, user=request.user, active=True)
+        context = {
+            "form": self.form_class(instance=service),
+            "pk_service": service.pk,
+        }
+        return render(request, self.template_name, context=context)
+    
+    def post(self, request, pk_service=None):
+        form = self.form_class(request.POST)
+        service = get_object_or_404(self.model, pk=pk_service, user=request.user, active=True)
+        context = {
+            "form": form,
+            "pk_service": service.pk,
+        }
+        
+        if form.is_valid():
+            service.name = request.POST.get("name")
+            service.price = request.POST.get("price")
+            service.description = request.POST.get("description")
+            service.save()
+            return redirect("user_list_services")
+        return render(request, self.template_name, context=context)
