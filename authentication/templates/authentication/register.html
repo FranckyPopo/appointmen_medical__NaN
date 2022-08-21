@@ -53,6 +53,9 @@
                                     {% endif %}
 
                                     {% render_field form.password1 placeholder="Mot de passe" %}
+                                    <small id="passwordHelpInline" class="text-muted">
+                                        Must be 8-20 characters long.
+                                    </small>
                                     {% if form.password1.errors  %}
                                         {% for error in form.password1.errors %}{% endfor %}
                                         <div>{{form.password1.errors}}</div> 

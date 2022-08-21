@@ -10,7 +10,12 @@ urlpatterns = [
         views.AuthenticationVerificationAccount.as_view(), 
         name="authentication_verification_account"
     ),    
-
+    
+    path(
+        "user/edit-profile/", 
+        views.AuthenticationEditProfile.as_view(), 
+        name="authentication_edit_profile"
+    ),
     
     
 ]

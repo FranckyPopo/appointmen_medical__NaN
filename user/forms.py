@@ -8,22 +8,7 @@ class FormService(forms.ModelForm):
         model = Service
         fields = ["name", "price", "description",]
         
-class FormEditUser(forms.ModelForm):
-    class Meta:
-        model = get_user_model()
-        fields = [
-            "email",
-            "medical_center_name",
-            "address",
-            "description", 
-            "phone_number",
-            "phone_number_two",
-            "photo",
-            "fax",
-            "country",
-            "city",
-            "town",
-        ]
+
         
         
         

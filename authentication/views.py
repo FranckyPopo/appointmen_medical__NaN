@@ -3,6 +3,7 @@ from django.views import View
 from django.http import HttpResponse
 from django.contrib.auth import login, logout
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from authentication import forms, models, backends
 
@@ -56,7 +57,6 @@ class AuthenticationLogin(View):
         messages.add_message(request, messages.ERROR, message)
         return redirect("authentication_login")
             
-    
 class AuthenticationVerificationAccount(View):
     def get(self, request, token): 
         message = "Vôtre compte a été activé avec success"
@@ -69,3 +69,48 @@ class AuthenticationVerificationAccount(View):
         messages.add_message(request, messages.SUCCESS, message)
         return redirect("authentication_login")
     
+class AuthenticationEditProfile(LoginRequiredMixin, View):
+    template_name = "user/pages/edit_user_profile.html"
+    form_class = forms.AuthenticationFormEditUser
+
+    def get(self, request):
+        context = {
+            "countries": models.Country.objects.filter(active=True),
+            "cities": models.City.objects.filter(active=True),
+            "Towns": models.Town.objects.filter(active=True),
+            "form": self.form_class(instance=request.user),
+        }
+        
+        return render(request, self.template_name, context=context)
+    
+    def post(self, request):
+        form = self.form_class(request.POST, instance=request.user)
+        
+        if form.is_valid():
+            form.save()
+            messages.add_message(
+                request, 
+                messages.SUCCESS, 
+                f"Les modifications on été appliqué avec success."
+            )
+            return redirect("authentication_edit_profile")
+        messages.add_message(
+            request, 
+            messages.ERROR, 
+            f"""Il est impossible d'appliquer les modifications.
+            Cas certain champ on été avec de fausse valeur"""
+        )
+        return render(request, self.template_name, context={"form": form})
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        

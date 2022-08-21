@@ -15,11 +15,6 @@ urlpatterns = [
         views.UserEditService.as_view(), 
         name="user_edit_service"
     ),
-    path(
-        "user/edit-profile/", 
-        views.UserEditProfile.as_view(), 
-        name="user_edit_profile"
-    ),
     
 
     
