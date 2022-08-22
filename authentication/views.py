@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from django.contrib.auth import login, logout
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordChangeView, PasswordResetDoneView
 
 from authentication import forms, models, backends
 
@@ -52,8 +54,8 @@ class AuthenticationLogin(View):
             ) 
 
             if user:
-                #logint(request, user)
-                return HttpResponse("connection réussite")
+                login(request, user)
+                return redirect("user_add_service")
         messages.add_message(request, messages.ERROR, message)
         return redirect("authentication_login")
             
@@ -102,7 +104,12 @@ class AuthenticationEditProfile(LoginRequiredMixin, View):
         )
         return render(request, self.template_name, context={"form": form})
         
-        
+class AuthenticationPasswordChange(LoginRequiredMixin, PasswordChangeView):
+    template_name = 'authentication/password_change.html'
+    success_url = reverse_lazy('authentication_change_passwor_done')
+
+class AuthenticationPasswordResetDone(LoginRequiredMixin, PasswordResetDoneView):
+    template_name = 'authentication/password_change_done.html'     
         
         
         
