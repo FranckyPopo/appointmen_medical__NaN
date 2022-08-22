@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.contrib.auth.views import PasswordChangeView, PasswordResetDoneView
+from django.core.mail import EmailMessage
 
 from authentication import forms, models, backends
 
@@ -55,7 +56,7 @@ class AuthenticationLogin(View):
 
             if user:
                 login(request, user)
-                return redirect("user_add_service")
+                return redirect("user_list_services")
         messages.add_message(request, messages.ERROR, message)
         return redirect("authentication_login")
             
@@ -107,7 +108,21 @@ class AuthenticationEditProfile(LoginRequiredMixin, View):
 class AuthenticationPasswordChange(LoginRequiredMixin, PasswordChangeView):
     template_name = 'authentication/password_change.html'
     success_url = reverse_lazy('authentication_change_passwor_done')
-
+    
+    def post(self, request, *args, **kwargs):
+        super().post(request, *args, *kwargs)
+        
+        body = f"""
+        Vous venez de modifier vôtre mot de passe. Si vous n'ête pas 
+        a l'origine de cette modification veuillez contact l'administrateur
+        du site en cliquand sur le lien http://127.0.0.1:8000/{reverse_lazy("front_contact")} pour 
+        récupérer vôtre compte. Sinon ignorer Se message.
+        """
+        # Envoie email    
+        email = EmailMessage('Modification du mot de passe', body, to=[request.user.email])
+        email.send()
+        
+        return redirect(self.success_url)
 class AuthenticationPasswordResetDone(LoginRequiredMixin, PasswordResetDoneView):
     template_name = 'authentication/password_change_done.html'     
         
