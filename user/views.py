@@ -3,6 +3,7 @@ from django.views import View
 from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.contrib.auth import get_user_model
 
 from user.forms import FormService
 from user.models import Service
@@ -85,3 +86,13 @@ class UserEditService(LoginRequiredMixin, View):
             return redirect("user_list_services")
         return render(request, self.template_name, context=context)
 
+class UserHealthCenters(View):
+    template_name = "front/pages/health_centers.html"
+    
+    def get(self, request):
+        context = {
+            "centres": get_user_model().objects.filter(is_active=True)
+        
+            
+        }
+        return render(request, self.template_name, context=context)

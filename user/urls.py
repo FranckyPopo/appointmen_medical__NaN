@@ -14,10 +14,10 @@ urlpatterns = [
         "list-service/edit-service/<int:pk_service>/", 
         views.UserEditService.as_view(), 
         name="user_edit_service"
-    ),
-    
+    ), 
+    path('health-centers/', views.UserHealthCenters.as_view(), name="front_health_centers"),
 
-    
+        
 ]
 
 

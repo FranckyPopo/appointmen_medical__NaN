@@ -14,12 +14,6 @@ class FrontContact(View):
     def get(self, request):
         return render(request, self.template_name)
     
-class FrontHealthCenters(View):
-    template_name = "front/pages/health_centers.html"
-    
-    def get(self, request):
-        return render(request, self.template_name)
-    
 class FrontDetailsCenters(View):
     template_name = "front/pages/details_centers.html"
     
