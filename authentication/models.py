@@ -45,6 +45,7 @@ class User(AbstractUser, RepeatFields):
     email = models.EmailField(unique=True)
     medical_center_name = models.CharField(max_length=150)
     address = models.CharField(max_length=150)
+    slug = models.SlugField(blank=True)
     description = models.TextField()
     phone_number = PhoneNumberField(region="CI", unique=True)
     phone_number_two = PhoneNumberField(region="CI", blank=True)

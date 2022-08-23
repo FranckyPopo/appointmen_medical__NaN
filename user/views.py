@@ -91,15 +91,25 @@ class UserHealthCenters(View):
     template_name = "front/pages/health_centers.html"
     
     def get(self, request, slug_town):
-        print("///////////", slug_town)
         if slug_town == "all":
             qs = get_user_model().objects.filter(is_active=True)
         else:
-            print("oui")
             qs = get_list_or_404(get_user_model(), town__slug=slug_town)
                 
         context = {
             "centres": qs,
             "towns": Town.objects.filter(active=True),            
         }
+        return render(request, self.template_name, context=context)
+
+class UserHealthCenterDetail(View):
+    template_name = "user/pages/health_centers_details.html"
+    
+    def get(self, request, slug):
+        center = get_object_or_404(get_user_model(), slug=slug)
+        context = {
+            "center": center,
+            "services": center.service_user.all(),
+        }    
+        
         return render(request, self.template_name, context=context)

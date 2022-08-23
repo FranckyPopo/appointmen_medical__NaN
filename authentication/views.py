@@ -123,6 +123,7 @@ class AuthenticationPasswordChange(LoginRequiredMixin, PasswordChangeView):
         email.send()
         
         return redirect(self.success_url)
+    
 class AuthenticationPasswordResetDone(LoginRequiredMixin, PasswordResetDoneView):
     template_name = 'authentication/password_change_done.html'     
         

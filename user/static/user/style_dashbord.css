@@ -14,10 +14,23 @@
   margin-top: 40px;
 }
 
+.title_centre {
+    text-decoration: none !important;
+    color: black !important;
+    font-weight: 500;
+}
+
+#title_centre {
+    text-decoration: none !important;
+    color: black !important;
+    font-weight: 500;
+}
+
 #title_centre:hover {
-    cursor: pointer;
-    text-decoration: underline;
-    color: #0d6efd;
+    cursor: pointer !important;
+    text-decoration: underline !important;
+    color: #0d6efd !important;
+    transition: all 0.3s;
 }
 
 

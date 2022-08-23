@@ -29,10 +29,14 @@ def sending_registration_confirmation_email(instance, created, **kwargs):
         email.send()
 
 
+@receiver(pre_save, sender=get_user_model())
 @receiver(pre_save, sender=Town)
 @receiver(pre_save, sender=Service)
 def generator_slug(instance, **kwargs):
-    if not instance.slug:
+    if isinstance(instance, get_user_model()):
+        instance.slug = f"{slugify(instance.medical_center_name)}-abidjan-cote-ivoire"
+        return 
+    
+    if instance.slug:
         instance.slug = slugify(instance.name)
-    
-    
+        
