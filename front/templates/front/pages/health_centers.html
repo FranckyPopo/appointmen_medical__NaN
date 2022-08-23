@@ -35,36 +35,13 @@
                             </div>
                             <div class="row row-cols-1 row-cols-md-3 g-4">
                                 {% for centre in centres %}
-                                    <div class="card" style="width: 18rem; padding: 0px !important; margin-right: 25px; margin-top: 47px;">
+                                    <div class="card" style="width: 17rem; padding: 0px !important; margin-right: 25px; margin-top: 47px;">
                                         <img src="{{ centre.photo.url }}" class="card-img-top" alt="...">
                                         <div class="card-body">
                                             <h5 class="card-title" id="title_centre"> {{ centre.medical_center_name }}</h5>
                                             <p class="card-text">{{ centre.description|truncatewords_html:"20" }}</p>
                                         </div>
                                     </div>
-                                    <div class="card" style="width: 18rem; padding: 0px !important; margin-right: 25px; margin-top: 47px;">
-                                        <img src="{{ centre.photo.url }}" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title" id="title_centre"> {{ centre.medical_center_name }}</h5>
-                                            <p class="card-text">{{ centre.description|truncatewords_html:"20" }}</p>
-                                        </div>
-                                    </div>
-                                    <div class="card" style="width: 18rem; padding: 0px !important; margin-right: 25px; margin-top: 47px;">
-                                        <img src="{{ centre.photo.url }}" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title" id="title_centre"> {{ centre.medical_center_name }}</h5>
-                                            <p class="card-text">{{ centre.description|truncatewords_html:"20" }}</p>
-                                        </div>
-                                    </div>
-                                    <div class="card" style="width: 18rem; padding: 0px !important; margin-right: 25px; margin-top: 47px;">
-                                        <img src="{{ centre.photo.url }}" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title" id="title_centre"> {{ centre.medical_center_name }}</h5>
-                                            <p class="card-text">{{ centre.description|truncatewords_html:"20" }}</p>
-                                        </div>
-                                    </div>
-                                    
-                                    
                                 {% endfor %}
                             </div>
                         </div>
@@ -73,105 +50,21 @@
                         <div class="services__sidebar">
                             <div class="services__accordion">
                                 <div class="services__title">
-                                    <h4><img src="{% static 'front/img/icons/services-icon.png' %}" alt=""> All services</h4>
+                                    <h4><img src="{% static 'front/img/icons/services-icon.png' %}" alt="">Filtre de recherches</h4>
                                 </div>
                                 <div class="accordion" id="accordionExample">
                                     <div class="card">
                                         <div class="card-heading active">
-                                            <a data-toggle="collapse" data-target="#collapseOne">
-                                                Facial Procedures
+                                            <a data-bs-toggle="collapse" style="text-decoration: none;" data-bs-target="#collapseTwo">
+                                                Communes
                                             </a>
                                         </div>
-                                        <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                                        <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
                                             <div class="card-body">
                                                 <ul>
-                                                    <li><a href="#">Facelift</a></li>
-                                                    <li><a href="#">Mini facelift</a></li>
-                                                    <li><a href="#">Eyelid lift</a></li>
-                                                    <li><a href="#">Brow lift</a></li>
-                                                    <li><a href="#">Rhinoplasty</a></li>
-                                                    <li><a href="#">Chin implants</a></li>
-                                                    <li><a href="#">Facial fillers</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-heading">
-                                            <a data-toggle="collapse" data-target="#collapseTwo">
-                                                Body Procedures
-                                            </a>
-                                        </div>
-                                        <div id="collapseTwo" class="collapse" data-parent="#accordionExample">
-                                            <div class="card-body">
-                                                <ul>
-                                                    <li><a href="#">Facelift</a></li>
-                                                    <li><a href="#">Mini facelift</a></li>
-                                                    <li><a href="#">Eyelid lift</a></li>
-                                                    <li><a href="#">Brow lift</a></li>
-                                                    <li><a href="#">Rhinoplasty</a></li>
-                                                    <li><a href="#">Chin implants</a></li>
-                                                    <li><a href="#">Facial fillers</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-heading">
-                                            <a data-toggle="collapse" data-target="#collapseThree">
-                                                Breast procedures
-                                            </a>
-                                        </div>
-                                        <div id="collapseThree" class="collapse" data-parent="#accordionExample">
-                                            <div class="card-body">
-                                                <ul>
-                                                    <li><a href="#">Facelift</a></li>
-                                                    <li><a href="#">Mini facelift</a></li>
-                                                    <li><a href="#">Eyelid lift</a></li>
-                                                    <li><a href="#">Brow lift</a></li>
-                                                    <li><a href="#">Rhinoplasty</a></li>
-                                                    <li><a href="#">Chin implants</a></li>
-                                                    <li><a href="#">Facial fillers</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-heading">
-                                            <a data-toggle="collapse" data-target="#collapseFour">
-                                                Buttocks
-                                            </a>
-                                        </div>
-                                        <div id="collapseFour" class="collapse" data-parent="#accordionExample">
-                                            <div class="card-body">
-                                                <ul>
-                                                    <li><a href="#">Facelift</a></li>
-                                                    <li><a href="#">Mini facelift</a></li>
-                                                    <li><a href="#">Eyelid lift</a></li>
-                                                    <li><a href="#">Brow lift</a></li>
-                                                    <li><a href="#">Rhinoplasty</a></li>
-                                                    <li><a href="#">Chin implants</a></li>
-                                                    <li><a href="#">Facial fillers</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-heading">
-                                            <a data-toggle="collapse" data-target="#collapseFive">
-                                                Skin care
-                                            </a>
-                                        </div>
-                                        <div id="collapseFive" class="collapse" data-parent="#accordionExample">
-                                            <div class="card-body">
-                                                <ul>
-                                                    <li><a href="#">Facelift</a></li>
-                                                    <li><a href="#">Mini facelift</a></li>
-                                                    <li><a href="#">Eyelid lift</a></li>
-                                                    <li><a href="#">Brow lift</a></li>
-                                                    <li><a href="#">Rhinoplasty</a></li>
-                                                    <li><a href="#">Chin implants</a></li>
-                                                    <li><a href="#">Facial fillers</a></li>
+                                                    {% for town in towns %}
+                                                        <li><a href="{% url 'front_health_centers' town.slug %}" style="text-decoration: none;">{{ town.name }}</a></li>
+                                                    {% endfor %}
                                                 </ul>
                                             </div>
                                         </div>

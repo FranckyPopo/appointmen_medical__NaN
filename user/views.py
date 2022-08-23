@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.views import View
 from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -7,6 +7,7 @@ from django.contrib.auth import get_user_model
 
 from user.forms import FormService
 from user.models import Service
+from authentication.models import Town
 
 class UserAddService(LoginRequiredMixin, View):         
     template_name = "user/pages/add_service.html"
@@ -89,10 +90,16 @@ class UserEditService(LoginRequiredMixin, View):
 class UserHealthCenters(View):
     template_name = "front/pages/health_centers.html"
     
-    def get(self, request):
+    def get(self, request, slug_town):
+        print("///////////", slug_town)
+        if slug_town == "all":
+            qs = get_user_model().objects.filter(is_active=True)
+        else:
+            print("oui")
+            qs = get_list_or_404(get_user_model(), town__slug=slug_town)
+                
         context = {
-            "centres": get_user_model().objects.filter(is_active=True)
-        
-            
+            "centres": qs,
+            "towns": Town.objects.filter(active=True),            
         }
         return render(request, self.template_name, context=context)

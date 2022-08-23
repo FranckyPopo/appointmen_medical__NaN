@@ -34,7 +34,11 @@ class Town(RepeatFields):
         null=True,
         related_name="town_city",
     )
-
+    slug = models.SlugField(blank=True)
+    
+    def __str__(self):
+        return self.name
+        
 class User(AbstractUser, RepeatFields):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"]

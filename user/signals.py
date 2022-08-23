@@ -1,13 +1,14 @@
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.contrib.auth import get_user_model
 from django.core.mail import EmailMessage
 from django.urls import reverse
+from django.utils.text import slugify
 
 import uuid
 
-from authentication.models import AccountVerification
-
+from authentication.models import AccountVerification, Town
+from user.models import Service
 
 @receiver(post_save, sender=get_user_model())
 def sending_registration_confirmation_email(instance, created, **kwargs):
@@ -28,3 +29,10 @@ def sending_registration_confirmation_email(instance, created, **kwargs):
         email.send()
 
 
+@receiver(pre_save, sender=Town)
+@receiver(pre_save, sender=Service)
+def generator_slug(instance, **kwargs):
+    if not instance.slug:
+        instance.slug = slugify(instance.name)
+    
+    

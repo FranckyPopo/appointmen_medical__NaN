@@ -15,7 +15,25 @@ class Service(RepeatFields):
     price = models.PositiveIntegerField(validators=[MinValueValidator(1, "entrer un valeur supérieur à 0")])
     active = models.BooleanField(default=True) 
     description = models.TextField()
+    slug = models.SlugField(default="")
 
+    def __str__(self):
+        return self.name
+    
+    @classmethod
+    def get_services(cls) -> list:
+        """Retourne un liste de services sans doublons"""
+        qs = cls.objects.filter(active=True, user__is_active=True)
+        services = []
+        
+        for item in qs:
+            for service in services:
+                if item.name == service.name:
+                    break
+            else:
+                services.append(item)
+        return services
+            
 class Appointmen(RepeatFields):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
