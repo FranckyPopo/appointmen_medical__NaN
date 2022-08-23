@@ -29,20 +29,42 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="services__details__title">
-                                        <h3>Centre hospitaliers</h3>
+                                        <h4 style="font-weight: 500;">Centre hospitaliers</h4>
                                     </div>
                                 </div>
                             </div>
                             <div class="row row-cols-1 row-cols-md-3 g-4">
                                 {% for centre in centres %}
-                                    <div class="card" style="width: 18rem;">
-                                        <img src="{{ centre. }}" class="card-img-top" alt="...">
+                                    <div class="card" style="width: 18rem; padding: 0px !important; margin-right: 25px; margin-top: 47px;">
+                                        <img src="{{ centre.photo.url }}" class="card-img-top" alt="...">
                                         <div class="card-body">
-                                        <h5 class="card-title">{{ centre.medical_center_name }}</h5>
-                                        <p class="card-text">{{ centre.description }}</p>
-                                        <a href="#" class="btn btn-primary">Voir les detail</a>
+                                            <h5 class="card-title" id="title_centre"> {{ centre.medical_center_name }}</h5>
+                                            <p class="card-text">{{ centre.description|truncatewords_html:"20" }}</p>
                                         </div>
                                     </div>
+                                    <div class="card" style="width: 18rem; padding: 0px !important; margin-right: 25px; margin-top: 47px;">
+                                        <img src="{{ centre.photo.url }}" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title" id="title_centre"> {{ centre.medical_center_name }}</h5>
+                                            <p class="card-text">{{ centre.description|truncatewords_html:"20" }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="card" style="width: 18rem; padding: 0px !important; margin-right: 25px; margin-top: 47px;">
+                                        <img src="{{ centre.photo.url }}" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title" id="title_centre"> {{ centre.medical_center_name }}</h5>
+                                            <p class="card-text">{{ centre.description|truncatewords_html:"20" }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="card" style="width: 18rem; padding: 0px !important; margin-right: 25px; margin-top: 47px;">
+                                        <img src="{{ centre.photo.url }}" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title" id="title_centre"> {{ centre.medical_center_name }}</h5>
+                                            <p class="card-text">{{ centre.description|truncatewords_html:"20" }}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    
                                 {% endfor %}
                             </div>
                         </div>

@@ -146,3 +146,5 @@ AUTHENTICATION_BACKENkDS = [
 
 
 LOGIN_URL = "authentication_login"
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/") 
