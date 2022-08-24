@@ -27,8 +27,13 @@
                 <div class="contact__content">
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
+                            <div class="contact__pic">
+                                <img src="{% static 'front/img/appelez-concept-medecin-telephone_1150-50289.webp' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
                             <div class="contact__form">
-                                <h3 >Connecter vous.</h3>
+                                <h3 >Connecter vous</h3>
                                 {% if messages %}
                                     {% for message in messages %}
                                         {% if message.tags == "error" %}
@@ -46,8 +51,7 @@
                                     {% render_field form.password placeholder="Mot de passe" %}
                                     <button type="submit" class="site-btn">Se connecter</button>
                                     <div style="margin-top: 25px;">
-                                        Cliquez <a href={% url 'authentication_register' %}>ici</a> 
-                                        pour crée un compte
+                                        Cliquer <a href={% url 'authentication_register' %}>ici</a> pour créer votre compte.
                                     </div>
                                 </form>
                             </div>
