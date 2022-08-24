@@ -42,7 +42,7 @@
                                     </div>
                             {% endfor %}
                         {% endif %}
-                        <form class="needs-validation" novalidate method="POST" action="{% url 'authentication_edit_profile' %}">
+                        <form class="needs-validation" novalidate method="POST" action="{% url 'authentication_edit_profile' %}" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="form-row">
                                 <div class="col-md-12 mb-6">

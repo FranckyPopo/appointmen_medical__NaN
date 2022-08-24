@@ -87,8 +87,8 @@ class AuthenticationEditProfile(LoginRequiredMixin, View):
         return render(request, self.template_name, context=context)
     
     def post(self, request):
-        form = self.form_class(request.POST, instance=request.user)
-        
+        form = self.form_class(request.POST, request.FILES, instance=request.user)
+        print(request.POST)
         if form.is_valid():
             form.save()
             messages.add_message(
@@ -97,6 +97,7 @@ class AuthenticationEditProfile(LoginRequiredMixin, View):
                 f"Les modifications on été appliqué avec success."
             )
             return redirect("authentication_edit_profile")
+        print(form.errors)
         messages.add_message(
             request, 
             messages.ERROR, 

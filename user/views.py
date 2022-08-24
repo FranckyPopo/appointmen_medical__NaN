@@ -20,8 +20,9 @@ class UserAddService(LoginRequiredMixin, View):
         return render(request, self.template_name, context=context)
         
     def post(self, request):
-        form = self.form_class(request.POST)
         user = request.user
+        form_profile = AuthenticationFormEditUser(instance=user)
+        form = self.form_class(request.POST)
         name = request.POST.get("name")
         price = request.POST.get("price")
         description = request.POST.get("description")
@@ -29,6 +30,16 @@ class UserAddService(LoginRequiredMixin, View):
             "form": form,
         }
         
+        if not form_profile.is_valid():
+            messages.add_message(
+                request, 
+                messages.ERROR, 
+                f"""Vous devez remplir certaint champ dans
+                les paramétres du profile avant d'avancer.
+                cliquer sur le lien pour les remplir."""
+            )
+            return render(request, self.template_name, context=context)
+            
         if form.is_valid():
             if Service.objects.filter(name__icontains=name, user=user):
                 return HttpResponse("Le service existe déjà")
