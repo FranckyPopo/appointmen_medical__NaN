@@ -22,81 +22,106 @@
 <!-- Breadcrumb Section End -->
 
 <!-- Contact Section Begin -->
-<section class="contact spad">
+<section class="contact spad" style="padding-top: 50px !important;">
     <div class="container">
         <div class="contact__content">
             <div class="row">
-                
-                <div class="col-lg-6 col-md-6" >
-                    
-                    <div class="contact__form">
-                        <h3>Information du profile </h3>
-                        {% if messages %}
-                            {% for message in messages %}
-                                {% if message.tags == "error" %}
-                                    <div class="alert alert-danger" role="alert">
-                                {% else %}
-                                    <div class="alert alert-{{message.tags}}" role="alert">
-                                {% endif %}
-                                    {{ message }} 
-                                    </div>
-                            {% endfor %}
+                <div class="col-lg-6 col-md-6">
+                    <div class="contact__pic">
+                        {% if user.photo.url %}
+                            <img src="{{ user.photo.url }}" alt="">
+                        {% else %}
+                            <img src="{% static 'front/img/urgengo-teleconsultation-pharmacie-h3.png__940x480_q70_crop_subsampling-2_upscale.png' %}" alt="">
                         {% endif %}
-
-                        <form class="needs-validation" novalidate method="POST" action="{% url 'authentication_edit_profile' %}" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="form-row">
-                                <div class="col-md-12 mb-6">
-                                    <label for="validationCustom01">Nom du centre medical</label>
-                                    {% render_field form.medical_center_name  class="form-control" placeholder="Nom du centre medical" %}
-                                    <div class="valid-feedback">Champ rempli! </div>
-                                </div>
-                                <div class="col-md-12 mb-6">
-                                    <label for="validationCustom01">Email</label>
-                                    {% render_field form.email  class="form-control" placeholder="Email" %}
-                                    <div class="valid-feedback">Champ rempli! </div>
-                                </div>                                
-                                <div class="col-md-12 mb-6">
-                                    <label for="validationCustom01">Photo</label>
-                                    {% render_field form.photo class="form-control" %}
-                                    <div class="valid-feedback">Champ rempli! </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-12 mb-6">
-                                    <label for="validationCustom01">Address</label>
-                                    {% render_field form.address  class="form-control" placeholder="Address" %}
-                                    <div class="valid-feedback">Champ rempli! </div>
-                                </div>
-                                <div class="col-md-12 mb-6">
-                                    <label for="validationCustom01">Description</label>
-                                    {% render_field form.description  class="form-control" placeholder="Description" %}
-                                    <div class="valid-feedback">Champ rempli! </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-12 mb-6">
-                                    <label for="validationCustom01">Numero 1</label>
-                                    {% render_field form.phone_number  class="form-control" placeholder="Numero 1" %}
-                                    <div class="valid-feedback">Champ rempli! </div>
-                                </div>
-                                <div class="col-md-12 mb-6">
-                                    <label for="validationCustom01">Numero 2</label>
-                                    {% render_field form.phone_number_two  class="form-control" placeholder="Numero 2" %}
-                                    <div class="valid-feedback">Champ rempli! </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-12 mb-6">
-                                    <label for="validationCustom01">Fax</label>
-                                    {% render_field form.fax  class="form-control" placeholder="Fax" %}
-                                    <div class="valid-feedback">Champ rempli! </div>
-                                </div>
-                            </div>
-                            <button type="submit" class="site-btn col-md-12">Modifier les informations</button>
-                        </form>
-                          
                     </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <h3 class="title_form">Information du profile</h3>
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if message.tags == "error" %}
+                                <div class="alert alert-danger" role="alert">
+                            {% else %}
+                                <div class="alert alert-{{message.tags}}" role="alert">
+                            {% endif %}
+                                {{ message }} 
+                                </div>
+                        {% endfor %}
+                    {% endif %}
+                    <form class="needs-validation" novalidate method="POST" action="{% url 'authentication_edit_profile' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="div-input">
+                            <div class="container-div">
+                                {% if form.medical_center_name.errors  %}
+                                    <small id="passwordHelpInline" class="error-form">
+                                        Ce champ est obligatoire
+                                    </small>
+                                {% endif %}
+                                {% render_field form.medical_center_name placeholder="Nom du centre" %}
+                            </div>
+                            <div>
+                                {% if form.email.errors  %}
+                                    <small id="passwordHelpInline" class="error-form">
+                                        {{form.email.errors}}
+                                    </small>
+                                {% endif %}
+                                {% render_field form.email placeholder="Address email" %}
+                            </div>
+                        </div>
+                        <div class="div-input">
+                            <div class="container-div">
+                                {% if form.phone_number.errors  %}
+                                    <small id="passwordHelpInline" class="error-form">
+                                        {{form.phone_number.errors}}
+                                    </small>
+                                {% endif %}
+                                {% render_field form.phone_number placeholder="Numéro de téléphone" %}
+                            </div>
+                            <div class="container-div">
+                                {% if form.phone_number_two.errors  %}
+                                <small id="passwordHelpInline" class="error-form">
+                                    {{form.phone_number_two.errors}}
+                                </small>
+                                {% endif %}
+                                {% render_field form.phone_number_two class="form-control" placeholder="Numéro de téléphone 2" %}
+                            </div>
+                        </div>
+                        <div class="div-input">
+                            <div class="container-div">
+                                {% if form.fax.errors  %}
+                                    <small id="passwordHelpInline" class="error-form">
+                                        {{form.fax.errors}}
+                                    </small>
+                                {% endif %}
+                                {% render_field form.fax placeholder="Fax" %}
+                            </div>
+                            <div class="container-div">
+                                {% if form.address.errors  %}
+                                <small id="passwordHelpInline" class="error-form">
+                                    {{form.address.errors}}
+                                </small>
+                                {% endif %}
+                                {% render_field form.address class="form-control" placeholder="Address" %}
+                            </div>
+                        </div>
+                        <div class="div-input-large"> 
+                            {% if form.photo.errors  %}
+                                <small id="passwordHelpInline" class="error-form">
+                                    {{form.photo.errors}}
+                                </small>
+                            {% endif %}
+                            {% render_field form.photo %}
+                        </div>
+                        <div class="div-input-large"> 
+                            {% if form.description.errors  %}
+                                <small id="passwordHelpInline" class="error-form">
+                                    {{form.description.errors}}
+                                </small>
+                            {% endif %}
+                            {% render_field form.description placeholder="Description" class="form-control" %}
+                        </div>
+                        <button type="submit" style="margin-top: 20px;" class="site-btn col-md-12">Modifier les informations</button>
+                    </form>
                 </div>
             </div>
         </div>

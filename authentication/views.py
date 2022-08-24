@@ -88,7 +88,7 @@ class AuthenticationEditProfile(LoginRequiredMixin, View):
     
     def post(self, request):
         form = self.form_class(request.POST, request.FILES, instance=request.user)
-        print(request.POST)
+        
         if form.is_valid():
             form.save()
             messages.add_message(
@@ -97,12 +97,11 @@ class AuthenticationEditProfile(LoginRequiredMixin, View):
                 f"Les modifications on été appliqué avec success."
             )
             return redirect("authentication_edit_profile")
-        print(form.errors)
+        
         messages.add_message(
             request, 
             messages.ERROR, 
-            f"""Il est impossible d'appliquer les modifications.
-            Cas certain champ on été avec de fausse valeur"""
+            f"""Impossibilité d'appliquer les changements. Veuillez vérifier les valeurs entrées"""
         )
         return render(request, self.template_name, context={"form": form})
         
