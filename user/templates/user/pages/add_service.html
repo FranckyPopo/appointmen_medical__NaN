@@ -48,20 +48,20 @@
                         
                         <form action="{% url 'user_add_service'  %}" method="POST">
                             {% csrf_token %}
-                            {% render_field form.name placeholder="Nom du service" %}
+
                             {% if form.name.errors  %}
-                                <div>{{form.name.errors}}</div> 
+                                <small id="passwordHelpInline" class="error-form">
+                                    Ce champ est obligatoire
+                                </small>
                             {% endif %}
-                            
-                            {% render_field form.price placeholder="Entrer un prix" %}
-                            {% if form.price.errors  %}
-                                <div>{{form.price.errors}}</div> 
-                            {% endif %}
-                            
-                            {% render_field form.description placeholder="Entrer un description claire du service" %}
+                            {% render_field form.name placeholder="Nom du service" %}
+
                             {% if form.description.errors  %}
-                                <div>{{form.description.errors}}</div> 
+                                <small id="passwordHelpInline" class="error-form">
+                                    {{form.description.errors}}
+                                </small>
                             {% endif %}
+                            {% render_field form.description placeholder="Entrer un description claire du service" %}
                         
                             <button type="submit" class="site-btn">Ajouter</button>
                         </form>

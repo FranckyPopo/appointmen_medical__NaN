@@ -34,9 +34,7 @@ class Service(RepeatFields):
             else:
                 services.append(item)
         return services
-        
-    
-            
+             
 class Appointmen(RepeatFields):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
