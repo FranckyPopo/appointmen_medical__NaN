@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 
-from user.forms import FormService
+from user.forms import FormService, UserFormAppoitmen
 from user.models import Service
 from authentication.models import Town
 
@@ -104,12 +104,41 @@ class UserHealthCenters(View):
 
 class UserHealthCenterDetail(View):
     template_name = "user/pages/health_centers_details.html"
+    form_class = UserFormAppoitmen
     
-    def get(self, request, slug):
-        center = get_object_or_404(get_user_model(), slug=slug)
+    def get(self, request, slug_user):
+        center = get_object_or_404(get_user_model(), slug=slug_user)
         context = {
             "center": center,
             "services": center.service_user.all(),
+            "form": self.form_class,
         }    
         
         return render(request, self.template_name, context=context)
+    
+    def post(self, request, slug_user):
+        print(request.POST)
+        pk_service = request.POST.get("service", "")
+        user = get_object_or_404(get_user_model(), slug=slug_user)
+        service = get_object_or_404(Service, pk=pk_service, user=user)
+        form = self.form_class(request.POST)
+        
+        context = {
+            "center": user,
+            "services": user.service_user.all(),
+            "form": form,
+        } 
+        if form.is_valid():
+            f = form.save(commit=False)
+            f.user = user
+            f.service = service
+            f.save()
+            messages.add_message(
+                request, 
+                messages.SUCCESS, 
+                f"Vôtre rendez-vous a été pris avec success."
+            )
+
+        return render(request, self.template_name, context=context)
+
+

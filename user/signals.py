@@ -8,7 +8,7 @@ from django.utils.text import slugify
 import uuid
 
 from authentication.models import AccountVerification, Town
-from user.models import Service
+from user.models import Service, Appointmen
 
 @receiver(post_save, sender=get_user_model())
 def sending_registration_confirmation_email(instance, created, **kwargs):
@@ -27,7 +27,21 @@ def sending_registration_confirmation_email(instance, created, **kwargs):
         # Envoie email    
         email = EmailMessage('Bienvenue sur Health access', body, to=[email_centre])
         email.send()
-
+        
+@receiver(post_save, sender=Appointmen)
+def confirmation_appointmen(instance, created, **kwargs):      
+    if created:
+        email_center = instance.email
+        url = reverse("front_contact")
+        body = f"""
+        Félicitation vôtre rendez-vous a été pris avec success pour le {instance.date_appointmen}.
+        Veuillez vous presenter à la date indiqué au rendez-vous. 
+        En cas de non présence le rendez-vous sera annulé automatiquement.
+        Pour toutes question veuillez nous contacter: http://127.0.0.1:8000{url}
+        """
+        # Envoie email    
+        email = EmailMessage('Bienvenue sur Health access', body, to=[email_center])
+        email.send()
 
 @receiver(pre_save, sender=get_user_model())
 @receiver(pre_save, sender=Town)
