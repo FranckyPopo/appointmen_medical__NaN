@@ -108,10 +108,12 @@ class AuthenticationEditProfile(LoginRequiredMixin, View):
 class AuthenticationPasswordChange(LoginRequiredMixin, PasswordChangeView):
     template_name = 'authentication/password_change.html'
     success_url = reverse_lazy('authentication_change_passwor_done')
+
     
-    def post(self, request, *args, **kwargs):
-        super().post(request, *args, *kwargs)
+class AuthenticationPasswordResetDone(LoginRequiredMixin, PasswordResetDoneView):
+    template_name = 'authentication/password_change_done.html'     
         
+    def get(self, request):
         body = f"""
         Vous venez de modifier vôtre mot de passe. Si vous n'ête pas 
         a l'origine de cette modification veuillez contact l'administrateur
@@ -122,13 +124,7 @@ class AuthenticationPasswordChange(LoginRequiredMixin, PasswordChangeView):
         email = EmailMessage('Modification du mot de passe', body, to=[request.user.email])
         email.send()
         
-        return redirect(self.success_url)
-    
-class AuthenticationPasswordResetDone(LoginRequiredMixin, PasswordResetDoneView):
-    template_name = 'authentication/password_change_done.html'     
-        
-        
-        
+        return render(request, self.template_name)
         
         
         
