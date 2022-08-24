@@ -56,8 +56,14 @@
                     <div class="col-lg-4 order-lg-1">
                         <div class="services__appoinment">
                             <div class="services__title">
+                                <h4><img src="{% static 'front/img/icons/services-icon.png' %}" alt="">Coordonnées<h4>
+                                <p>Téléphone: {{ center.phone_number }} {% if center.phone_number_two  %}/ {{ center.phone_number_two }} {% endif %} </p>
+                                {% if center.fax %}<p>Fax: {{ center.fax }} </p>{% endif %}
+                                <p>Addresse: {{ center.address }}</p>
+                            </div>
+                            <div class="services__title">
                                 <h4><img src="{% static 'front/img/icons/services-icon.png' %}" alt="">Obtenir un rendez-vous<h4>
-                                </div>
+                            </div>
                                 {% if messages %}
                                     {% for message in messages %}
                                         {% if message.tags == "error" %}
@@ -99,7 +105,7 @@
                                 
                                 <select name="service">
                                     {% for service in services %}
-                                        <option value="{{ service.pk }}">{{ service.name }} {{center.slug}}</option>
+                                        <option value="{{ service.pk }}">{{ service.name }}</option>
                                     {% endfor %}
                                 </select>
                                 <button 

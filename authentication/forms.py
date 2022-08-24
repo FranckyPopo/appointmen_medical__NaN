@@ -24,6 +24,7 @@ class AuthenticationFormLogin(forms.Form):
 
 
 class AuthenticationFormEditUser(forms.ModelForm):
+    photo = forms.ImageField(required=True)
     class Meta:
         model = get_user_model()
         fields = [

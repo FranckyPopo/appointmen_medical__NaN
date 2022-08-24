@@ -117,7 +117,6 @@ class UserHealthCenterDetail(View):
         return render(request, self.template_name, context=context)
     
     def post(self, request, slug_user):
-        print(request.POST)
         pk_service = request.POST.get("service", "")
         user = get_object_or_404(get_user_model(), slug=slug_user)
         service = get_object_or_404(Service, pk=pk_service, user=user)

@@ -41,7 +41,10 @@ def confirmation_appointmen(instance, created, **kwargs):
         """
         # Envoie email    
         email = EmailMessage('Bienvenue sur Health access', body, to=[email_center])
-        email.send()
+        try:
+            email.send()
+        except:
+            print("///////////////////////:::L'email n'a pas été envoyé")
 
 @receiver(pre_save, sender=get_user_model())
 @receiver(pre_save, sender=Town)
