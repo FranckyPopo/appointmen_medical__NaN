@@ -41,7 +41,7 @@
                                             <div style="margin-bottom: 10px;">
                                                 <a href="{% url 'user_health_center_detail' centre.slug %}" id="title_centre"> {{ centre.medical_center_name }}</a>
                                             </div>
-                                            <p class="card-text">{{ centre.description|truncatewords_html:"20" }}</p>
+                                            <p class="card-text">{{ centre.description|truncatechars_html:"190" }}</p>
                                         </div>
                                     </div>
                                 {% endfor %}

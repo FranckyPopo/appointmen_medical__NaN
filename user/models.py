@@ -15,7 +15,7 @@ class Service(RepeatFields):
     )
     name = models.CharField(max_length=150)
     active = models.BooleanField(default=True) 
-    description = models.TextField()
+    description = models.TextField(max_length=200)
     slug = models.SlugField(default="")
 
     def __str__(self):

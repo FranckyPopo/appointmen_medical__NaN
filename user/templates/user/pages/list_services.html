@@ -21,7 +21,7 @@
 </section>
 <!-- Breadcrumb Section End -->
 
-<section class="contact spad">
+<section class="contact spad" style="padding-top: 50px !important;">
     <div class="container">
         <div class="text-end">
             <a href="{% url 'user_add_service' %}" style="margin-bottom: 20px;" class="btn btn-success">
@@ -42,12 +42,12 @@
         <div class="row row-cols-1 row-cols-md-3 g-4">
             {% for service in services %}
                 <div class="col-sm-6">
-                    <div class="card" >
+                    <div class="card" style="height: 100%;">
                         <div class="card-body">
                             <h5 class="card-title" hx-post="{% url 'user_delete_service' service.pk %}">
                                 {{ service.name }}
                             </h5>
-                            <p class="card-text">{{ service.description }}</p>
+                            <p class="card-text">{{ service.description|truncatechars_html:"190" }}</p>
                             <form method="post" style="display: inline;">
                                 {% csrf_token %}
                                 <a 
