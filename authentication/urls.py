@@ -7,23 +7,24 @@ from authentication import views
 urlpatterns = [
     path("register/", views.AuthenticationRegister.as_view(), name="authentication_register"),
     path("login/", views.AuthenticationLogin.as_view(), name="authentication_login"),
+    path("dashbord/logout/", views.AuthenticationLogout.as_view(), name="authentication_logout"),
     path(
         "verification-account/<uuid:token>/", 
         views.AuthenticationVerificationAccount.as_view(), 
         name="authentication_verification_account"
     ),    
     path(
-        "user/edit-profile/", 
+        "dashbord/edit-profile/", 
         views.AuthenticationEditProfile.as_view(), 
         name="authentication_edit_profile"
     ),
     path(
-        "user/change-password/", 
+        "dashbord/change-password/", 
         views.AuthenticationPasswordChange.as_view(), 
         name="authentication_change_passwor"
     ),
     path(
-        "user/change-password/done/", 
+        "change-password/done/", 
         views.AuthenticationPasswordResetDone.as_view(), 
         name="authentication_change_passwor_done"
     ),

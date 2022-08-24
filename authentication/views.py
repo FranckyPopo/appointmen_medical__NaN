@@ -109,7 +109,6 @@ class AuthenticationPasswordChange(LoginRequiredMixin, PasswordChangeView):
     template_name = 'authentication/password_change.html'
     success_url = reverse_lazy('authentication_change_passwor_done')
 
-    
 class AuthenticationPasswordResetDone(LoginRequiredMixin, PasswordResetDoneView):
     template_name = 'authentication/password_change_done.html'     
         
@@ -126,9 +125,11 @@ class AuthenticationPasswordResetDone(LoginRequiredMixin, PasswordResetDoneView)
         
         return render(request, self.template_name)
         
-        
-        
-        
+class AuthenticationLogout(LoginRequiredMixin, View):  
+    def get(self, request):
+        logout(request)
+        return redirect("authentication_login")
+    
         
         
         
