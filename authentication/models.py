@@ -69,6 +69,12 @@ class User(AbstractUser, RepeatFields):
     )
     is_verification_account = models.BooleanField(default=False)
     
+    def fields_valid(self):
+        if(self.email and self.medical_center_name and
+           self.address and self.description and self.phone_number and self.photo):
+            return True
+        return False
+    
     def __str__(self):
         return self.username or self.medical_center_name
         

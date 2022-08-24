@@ -30,7 +30,7 @@
                 <div class="col-lg-6 col-md-6" >
                     
                     <div class="contact__form">
-                        <h3>Information du profile</h3>
+                        <h3>Information du profile </h3>
                         {% if messages %}
                             {% for message in messages %}
                                 {% if message.tags == "error" %}
@@ -42,6 +42,7 @@
                                     </div>
                             {% endfor %}
                         {% endif %}
+
                         <form class="needs-validation" novalidate method="POST" action="{% url 'authentication_edit_profile' %}" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="form-row">

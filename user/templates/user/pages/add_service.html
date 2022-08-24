@@ -34,6 +34,18 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="contact__form">
                         <h3>Ajouter un nouveaux service</h3>
+                        {% if messages %}
+                            {% for message in messages %}
+                                {% if message.tags == "error" %}
+                                    <div class="alert alert-danger" role="alert">
+                                {% else %}
+                                    <div class="alert alert-{{message.tags}}" role="alert">
+                                {% endif %}
+                                    {{ message }} 
+                                    </div>
+                            {% endfor %}
+                        {% endif %}
+                        
                         <form action="{% url 'user_add_service'  %}" method="POST">
                             {% csrf_token %}
                             {% render_field form.name placeholder="Nom du service" %}

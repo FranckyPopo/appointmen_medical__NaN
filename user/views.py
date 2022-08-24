@@ -4,10 +4,12 @@ from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.auth import get_user_model
+from django.urls import reverse_lazy
 
 from user.forms import FormService, UserFormAppoitmen
 from user.models import Service
 from authentication.models import Town
+from authentication.forms import AuthenticationFormEditUser
 
 class UserAddService(LoginRequiredMixin, View):         
     template_name = "user/pages/add_service.html"
@@ -30,21 +32,20 @@ class UserAddService(LoginRequiredMixin, View):
             "form": form,
         }
         
-        if not form_profile.is_valid():
+        if not user.fields_valid():
             messages.add_message(
                 request, 
                 messages.ERROR, 
                 f"""Vous devez remplir certaint champ dans
-                les paramétres du profile avant d'avancer.
-                cliquer sur le lien pour les remplir."""
+                les paramétres du profile avant d'ajouter un service."""
             )
             return render(request, self.template_name, context=context)
-            
+             
         if form.is_valid():
             if Service.objects.filter(name__icontains=name, user=user):
                 return HttpResponse("Le service existe déjà")
             
-            Service.objects.create(name=name, price=price, description=description, user=user)
+            Service.objects.create(name=name, description=description, user=user)
             messages.add_message(
                 request, 
                 messages.SUCCESS, 
