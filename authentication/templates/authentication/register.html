@@ -11,7 +11,7 @@
                         <div class="breadcrumb__text">
                             <h2>Register</h2>
                             <div class="breadcrumb__links">
-                                <a href="{% url 'front_index' %}">Home</a>
+                                <a href="{% url 'front_index' %}">Acceuil</a>
                                 <span>Register</span>
                             </div>
                         </div>
@@ -27,45 +27,61 @@
                 <div class="contact__content">
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
+                            <div class="contact__pic">
+                                <img src="{% static 'front/img/urgengo-teleconsultation-pharmacie-h3.png__940x480_q70_crop_subsampling-2_upscale.png' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
                             <div class="contact__form">
                                 <h3>Incrivez vous.</h3>
                                 <form action="{% url 'authentication_register' %}" method="POST">
                                     {% csrf_token %}
 
-                                    {% render_field form.medical_center_name placeholder="Nom du centre medical" %}
                                     {% if form.medical_center_name.errors  %}
-                                        <div><p class="error-form">Ce champ est obligatoire.</p></div> 
+                                        <small id="passwordHelpInline" class="error-form">
+                                            Ce champ est obligatoire
+                                        </small>
                                     {% endif %}
-
-                                    {% render_field form.email placeholder="Email" %}
+                                    {% render_field form.medical_center_name placeholder="Nom du centre medical" %}
+                                    
                                     {% if form.email.errors  %}
-                                        <div><p>{{form.email.errors}}</p></div> 
+                                        <small id="passwordHelpInline" class="error-form">
+                                            {{form.email.errors}}
+                                        </small>
                                     {% endif %}
-                                    
-                                    {% render_field form.phone_number placeholder="Numéro de téléphone" %}
+                                    {% render_field form.email placeholder="Email" %}
+
                                     {% if form.phone_number.errors  %}
-                                        <div>{{form.phone_number.errors}}</div> 
+                                        <small id="passwordHelpInline" class="error-form">
+                                            {{form.phone_number.errors}}
+                                        </small>
                                     {% endif %}
+                                    {% render_field form.phone_number placeholder="Numéro de téléphone" %}
 
-                                    {% render_field form.address placeholder="Veuillez entrer l address du centre" %}
                                     {% if form.address.errors  %}
-                                        <div><p class="error-form">Ce champ est obligatoire.</p></div> 
+                                        <small id="passwordHelpInline" class="error-form">
+                                            {{form.address.errors}}
+                                        </small>
                                     {% endif %}
+                                    {% render_field form.address placeholder="Veuillez entrer l address du centre" %}
 
-                                    {% render_field form.password1 placeholder="Mot de passe" %}
-                                    <small id="passwordHelpInline" class="text-muted">
-                                        Must be 8-20 characters long.
-                                    </small>
                                     {% if form.password1.errors  %}
-                                        {% for error in form.password1.errors %}{% endfor %}
-                                        <div>{{form.password1.errors}}</div> 
+                                        <small id="passwordHelpInline" class="error-form">
+                                            {{form.password1.errors}}
+                                        </small>
+                                    {% else %}
+                                        <small id="passwordHelpInline" class="text-muted">
+                                            Le mot de passe doit comporter un minimum de huit caractères
+                                        </small>
                                     {% endif %}
+                                    {% render_field form.password1 placeholder="Mot de passe" %}
                                     
-                                    {% render_field form.password2 placeholder="Confirmer le mot de passe" %}
                                     {% if form.password2.errors  %}
-                                    {% for error in form.password2.errors %}{% endfor %}
-                                        <div>{{form.password2.errors}}</div> 
+                                        <small id="passwordHelpInline" class="error-form">
+                                            {{form.password2.errors}}
+                                        </small>
                                     {% endif %}
+                                    {% render_field form.password2 placeholder="Confirmer le mot de passe" %}
                                     
                                     <button type="submit" class="site-btn" style="margin-top: 20px;">S'incrire</button>
                                     <div style="margin-top: 25px;">
