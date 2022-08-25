@@ -1156,6 +1156,7 @@ ol {
 	margin-right: 26px;
 	display: inline-block;
 	position: relative;
+	text-decoration: none;
 }
 
 .breadcrumb__links a:after {

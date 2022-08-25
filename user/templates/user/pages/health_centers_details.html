@@ -28,7 +28,10 @@
                     <div class="col-lg-8 order-lg-2">
                         <div class="services__details">
                             <div class="row row-cols-1 row-cols-md-8">
-                                <div class="card">
+                                <div class="card" style="box-shadow: 0px 0px 10px 0px rgb(82 63 105 / 10%);
+                                -webkit-box-shadow: 0px 0px 20px 0px rgb(82 63 105 / 10%);
+                                -moz-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+                                -ms-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);">
                                     <div class="card-body">
                                       <h5 class="title_centre" style="margin-bottom: 20px;">{{ center.medical_center_name }}</h5>
                                       <p class="card-text">{{ center.description }}</p>
@@ -41,7 +44,11 @@
                             </div>
                             <div class="row row-cols-3 row-cols-md-3 d-flex" style="justify-content: space-between;">
                                 {% for service in services %}
-                                    <div class="card" style="width: 17rem; padding: 0px !important; margin-top: 20px;">
+                                    <div class="card" style="width: 17rem; padding: 0px !important; margin-top: 20px; 
+                                    box-shadow: 0px 0px 10px 0px rgb(82 63 105 / 10%);
+                                    -webkit-box-shadow: 0px 0px 20px 0px rgb(82 63 105 / 10%);
+                                    -moz-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+                                    -ms-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);">
                                         <div class="card-body">
                                             <div style="margin-bottom: 10px;">
                                                 <h5 class="title_centre">{{ service.name }}</h5>
@@ -56,10 +63,14 @@
                     <div class="col-lg-4 order-lg-1">
                         <div class="services__appoinment">
                             <div class="services__title">
-                                <h4><img src="{% static 'front/img/icons/services-icon.png' %}" alt="">Coordonnées<h4>
-                                <p>Téléphone: {{ center.phone_number }} {% if center.phone_number_two  %}/ {{ center.phone_number_two }} {% endif %} </p>
-                                {% if center.fax %}<p>Fax: {{ center.fax }} </p>{% endif %}
-                                <p>Addresse: {{ center.address }}</p>
+                                <h4>
+                                    <img src="{% static 'front/img/icons/services-icon.png' %}" alt="">Coordonnées
+                                <h4>
+                                <div>
+                                    <p>Téléphone: {{ center.phone_number }} {% if center.phone_number_two  %}/ {{ center.phone_number_two }} {% endif %} </p>
+                                    {% if center.fax %}<p>Fax: {{ center.fax }} </p>{% endif %}
+                                    <p>Addresse: {{ center.address }}</p>
+                                </div>
                             </div>
                             <div class="services__title">
                                 <h4><img src="{% static 'front/img/icons/services-icon.png' %}" alt="">Obtenir un rendez-vous<h4>
