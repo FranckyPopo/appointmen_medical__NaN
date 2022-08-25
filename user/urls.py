@@ -17,7 +17,7 @@ urlpatterns = [
         views.UserEditService.as_view(), 
         name="user_edit_service"
     ), 
-    path('health-centers/<slug:slug_town>/', views.UserHealthCenters.as_view(), name="front_health_centers"),
+    path('health-centers/<slug:slug_town>/', views.UserHealthCenters.as_view(), name="user_health_centers"),
     path('health-center/<slug:slug_user>/', views.UserHealthCenterDetail.as_view(), name="user_health_center_detail"),
 ]
 

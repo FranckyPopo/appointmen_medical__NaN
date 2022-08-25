@@ -40,10 +40,7 @@ class AuthenticationLogin(View):
     form_class = forms.AuthenticationFormLogin
 
     def get(self, request):
-        context = {
-            "form": self.form_class,
-        }
-        return render(request, self.template_name, context=context)
+        return render(request, self.template_name, context={"form": self.form_class,})
     
     def post(self, request):
         form = self.form_class(request.POST)

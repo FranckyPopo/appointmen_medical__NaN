@@ -65,22 +65,21 @@
                 </div>
                 <div class="col-lg-10">
                     <div class="header__menu__option">
-                        <nav class="header__menu"> 
-                                <ul>
-                                    {% if user.is_authenticated %}
-                                        <li>
-                                            <a class="" data-bs-toggle="offcanvas" href="#offcanvasExample" role="a" aria-controls="offcanvasExample">
-                                                Menu
-                                            </a>
-                                        </li>
-                                        <li><a href="{% url 'front_index' %}" role="a">Accueil</a></li>
-                                        <li><a href="#">Profile</a></li>
-                                    {% else %}
-                                        <li><a href="{% url 'front_index' %}">Accueil</a></li>
-                                        <li><a href="{% url 'front_contact' %}">Contact</a></li>
-                                    {% endif %}
-                                        <li><a href="{% url 'front_health_centers' "all" %}">Centre hospitaliers</a></li>
-                                </ul>
+                        <nav class="header__menu">
+                            <ul>
+                                {% if user.is_authenticated %}
+                                    <li>
+                                    <a class="" data-bs-toggle="offcanvas" href="#offcanvasExample" role="a" aria-controls="offcanvasExample">
+                                        Tableau de bord
+                                    </a>
+                                    </li>
+                                    <li><a href="{% url 'user_health_center_detail' user.slug %}">Profile</a></li>
+                                {% else %}
+                                    <li><a href="{% url 'front_index' %}">Accueil</a></li>
+                                    <li><a href="{% url 'user_health_centers' 'all' %}">Centres hospitaliers</a></li>
+                                {% endif %}
+                                <li><a href="{% url 'front_contact' %}">Contact</a></li>
+                            </ul>
                         </nav>
                     </div>
                 </div>
@@ -91,6 +90,7 @@
         </div>
     </header>
     <!-- Header Section End -->
+
     <!-- Menu left -->
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
         <div class="offcanvas-header">
@@ -159,16 +159,6 @@
 
     </div>
 
-    <!-- Menu right -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasRightLabel">Recherchez vous des centres en particulier ?</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-          
-        </div>
-      </div>
 
     {% block "content" %}{% endblock "content" %}
 

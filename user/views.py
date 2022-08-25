@@ -105,10 +105,11 @@ class UserHealthCenters(View):
     
     def get(self, request, slug_town):
         if slug_town == "all":
-            qs = get_user_model().objects.filter(is_active=True)
+            qs = get_user_model().objects.filter(is_active=True, is_verification_account=True)
         else:
-            qs = get_list_or_404(get_user_model(), town__slug=slug_town)
-                
+            qs = get_list_or_404(get_user_model(), town__slug=slug_town, is_active=True, is_verification_account=True)
+        
+        print("/////////:", qs)
         context = {
             "centres": qs,
             "towns": Town.objects.filter(active=True),            

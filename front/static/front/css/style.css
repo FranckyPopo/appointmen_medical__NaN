@@ -399,6 +399,7 @@ ol {
 	padding: 4px 0;
 	text-transform: uppercase;
 	position: relative;
+	text-decoration: none;
 }
 
 .header__menu ul li a:after {
