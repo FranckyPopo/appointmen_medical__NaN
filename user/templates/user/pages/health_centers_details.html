@@ -78,30 +78,48 @@
 
                             <form method="POST">
                                 {% csrf_token %}
-                                {% render_field form.name placeholder="Nom" %}
+
                                 {% if form.name.errors  %}
-                                    <div><p class="error-form">Ce champ est obligatoire.</p></div> 
+                                    <small id="passwordHelpInline" class="error-form">
+                                        Ce champ est obligatoire
+                                    </small>
                                 {% endif %}
-
-                                {% render_field form.email placeholder="Email" %}
+                                {% render_field form.name placeholder="Nom" %}
+                                
                                 {% if form.email.errors  %}
-                                    <div><p>{{form.email.errors}}</p></div> 
+                                    <small id="passwordHelpInline" class="error-form">
+                                        {{ form.email.errors }}
+                                    </small>
                                 {% endif %}
+                                {% render_field form.email placeholder="Email" %}
 
-                                {% render_field form.message placeholder="Décrivez brièvement le rendez-vous" class="form-control" style="margin-bottom: 20px;" rows=4 %}
+                                {% if form.motif.errors  %}
+                                    <small id="passwordHelpInline" class="error-form">
+                                        {{ form.motif.errors }}
+                                    </small>
+                                {% endif %}
+                                {% render_field form.motif placeholder="Motif" %}
+
                                 {% if form.message.errors  %}
-                                    <div><p>{{form.message.errors}}</p></div> 
+                                    <small id="passwordHelpInline" class="error-form">
+                                        {{ form.message.errors }}
+                                    </small>
                                 {% endif %}
+                                {% render_field form.message placeholder="Décrivez brièvement le rendez-vous" class="form-control" style="margin-bottom: 20px;" rows=4 %}
                                 
-                                {% render_field form.phone_number placeholder="Numéro de téléphone" %}
                                 {% if form.phone_number.errors  %}
-                                    <div><p>{{form.phone_number.errors}}</p></div> 
+                                    <small id="passwordHelpInline" class="error-form">
+                                        {{ form.phone_number.errors }}
+                                    </small>
                                 {% endif %}
+                                {% render_field form.phone_number placeholder="Numéro de téléphone" %}
                                 
-                                {% render_field form.date_appointmen placeholder="Date exemple: 31/12/2021 " %}
                                 {% if form.date_appointmen.errors  %}
-                                    <div><p>{{form.date_appointmen.errors}}</p></div> 
+                                    <small id="passwordHelpInline" class="error-form">
+                                        {{ form.date_appointmen.errors }}
+                                    </small>
                                 {% endif %}
+                                {% render_field form.date_appointmen placeholder="Date exemple: 31/12/2021 " %}
                                 
                                 <select name="service">
                                     {% for service in services %}

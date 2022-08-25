@@ -37,10 +37,10 @@ def confirmation_appointmen(instance, created, **kwargs):
         Félicitation vôtre rendez-vous a été pris avec success pour le {instance.date_appointmen}.
         Veuillez vous presenter à la date indiqué au rendez-vous. 
         En cas de non présence le rendez-vous sera annulé automatiquement.
-        Pour toutes question veuillez nous contacter: http://127.0.0.1:8000{url}
+        Pour toutes autres questions veuillez nous contacter: http://127.0.0.1:8000{url}
         """
         # Envoie email    
-        email = EmailMessage('Bienvenue sur Health access', body, to=[email_center])
+        email = EmailMessage('Rendez-vous pris avec success', body, to=[email_center])
         try:
             email.send()
         except:

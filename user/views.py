@@ -161,8 +161,7 @@ class UserAppoitment(LoginRequiredMixin, View):
             "appointmens": request.user.appointmen_user.all(),
         }
         return render(request, self.template_name, context=context)
-
-        
+       
 class UserAppoitmentDetail(LoginRequiredMixin, View):
     template_name = "user/pages/appoitment_content.html"
 

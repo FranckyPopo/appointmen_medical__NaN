@@ -9,5 +9,5 @@ class Service(admin.ModelAdmin):
     
 @admin.register(models.Appointmen)
 class Appointmen(admin.ModelAdmin):
-    exclude = ["message"]
+    list_display = ["user", "name", "email"]
 

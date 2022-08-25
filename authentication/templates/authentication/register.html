@@ -74,6 +74,17 @@
                                         </div>
                                     </div>
 
+
+
+                                    <div>
+                                        <div class="div-input"> 
+                                            <select name="town">
+                                                {% for town in towns %}
+                                                    <option value="{{ town.pk }}">{{ town.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div>
                                         <div class="div-input-large"> 
                                             {% if form.password1.errors  %}
@@ -97,6 +108,9 @@
                                             {% render_field form.password2 placeholder="Confirmer le mot de passe" %}
                                         </div>
                                     </div>
+                                    
+                                    
+                                    
                                     <button type="submit" class="site-btn" style="margin-top: 20px;">S'incrire</button>
                                     <div style="margin-top: 25px;">
                                         Cliquez <a href={% url 'authentication_login' %}>ici</a> 

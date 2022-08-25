@@ -17,21 +17,23 @@ class AuthenticationRegister(View):
     def get(self, request):
         context = {
             "form": self.form_class,
+            "towns": models.Town.objects.filter(active=True),
         }
         return render(request, self.template_name, context=context)
     
     def post(self, request):
         message = "Un email de confirmation vous a été envoyé"
         form = self.form_class(request.POST)
-        context = {
-            "form": form
-        }
-
+        pk_town = request.POST.get("town")
+        town = get_object_or_404(models.Town, pk=pk_town)
+        
         if form.is_valid():
-            form.save()
+            f = form.save(commit=False)
+            f.town = town
+            f.save()
             messages.add_message(request, messages.SUCCESS, message)
             return redirect("authentication_login")
-        return render(request, self.template_name, context=context)
+        return render(request, self.template_name, context={"form": form})
     
 class AuthenticationLogin(View):
     template_name = "authentication/login.html"
