@@ -49,6 +49,7 @@ class Appointmen(RepeatFields):
         related_name="appointmen_service",
     )
     name = models.CharField(max_length=150)
+    motif = models.CharField(max_length=150)
     phone_number = PhoneNumberField(region="CI")
     email = models.EmailField(blank=True)
     message = models.TextField()

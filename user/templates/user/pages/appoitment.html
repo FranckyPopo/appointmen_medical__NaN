@@ -1,0 +1,68 @@
+{% extends 'user/base/base.html' %}
+{% load static %}
+
+{% block "content" %}
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option spad set-bg" data-setbg="{% static 'front/img/breadcrumb-bg.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Rendez-vous</h2>
+                    <div class="breadcrumb__links">
+                        <a href="{% url 'front_index' %}">Accueil</a>
+                        <span>Appointment</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<div class="container" style="
+    margin-top: 40px;
+    margin-bottom: 40px;">
+    <div class="content-wrapper">
+        <!-- Content Place Here -->
+        <div class="email-app card-margin">
+            <div class="email-toolbars-wrapper">
+                <div class="toolbar-body">
+                    <div class="contact-header">
+                        <div class="contact-left">
+                            <h5 class="title">Rendez-vous</h5>
+                            <span class="badge badge-sb-success">{{ appointmens|length }}</span>
+                        </div>
+                    </div>
+                    <ul class="contact-list">
+                        <li class="contact-list-item">
+                            {% for appointmen in appointmens %}
+                                <a 
+                                    hx-get="{% url 'user_appointment_detail' appointmen.pk %}"
+                                    hx-trigger="click"
+                                    hx-target="#appointmen_content"
+                                    hx-swap="closest outerHTML">
+                                    <div class="user" style="margin-bottom: 20px;">
+                                        <div class="user_hover">
+                                            <p class="user-name">{{ appointmen.name|title }}</p>
+                                            <p class="user-designation">{{ appointmen.email }}</p>
+                                        </div>
+                                    </div>
+                                <a/>
+                            {% endfor %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="email-desc-wrapper" id="appointmen_content">
+                <div class="email-body">
+                    <h5 style="display: inline;">Cliquer sur en rendez-vous pour avoir plus de détail</span>
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock "content" %}

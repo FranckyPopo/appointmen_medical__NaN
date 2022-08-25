@@ -1,0 +1,14 @@
+<div class="email-header">
+    <div class="email-subject"><h3>Information de la consultation</h3></div>
+    <div class="email-date">Nom: {{ appointmen.name|title }}</div>
+    <div class="email-date">Téléphone: {{ appointmen.phone_number }}</div>
+    <div class="email-date">Email: {{ appointmen.email }}</div>
+    <div class="email-date">Service: {{ appointmen.service }}</div>
+    <div class="email-date">Date du rendez-vous: {{ appointmen.date_appointmen }}</div>
+</div>
+<div class="email-body">
+    <h5 style="display: inline;">Motif:</h5> <span>   {{ appointmen.motif }}</span>
+    <p style="margin-top: 12px;">
+        {{ appointmen.message }}
+    </p>
+</div>  

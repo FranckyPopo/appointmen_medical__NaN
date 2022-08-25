@@ -5,9 +5,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
+from django.template.loader import render_to_string
 
 from user.forms import FormService, UserFormAppoitmen
-from user.models import Service
+from user.models import Service, Appointmen
 from authentication.models import Town
 from authentication.forms import AuthenticationFormEditUser
 
@@ -152,4 +153,25 @@ class UserHealthCenterDetail(View):
 
         return render(request, self.template_name, context=context)
 
+class UserAppoitment(LoginRequiredMixin, View):
+    template_name = "user/pages/appoitment.html"
 
+    def get(self, request):
+        context = {
+            "appointmens": request.user.appointmen_user.all(),
+        }
+        return render(request, self.template_name, context=context)
+
+        
+class UserAppoitmentDetail(LoginRequiredMixin, View):
+    template_name = "user/pages/appoitment_content.html"
+
+    def get(self, request, pk_appointmen):
+        appointmen = get_object_or_404(Appointmen, pk=pk_appointmen, user=request.user)
+        content_appointmen = render_to_string(self.template_name, {"appointmen": appointmen})
+        
+        return HttpResponse(content_appointmen)
+
+    
+    
+    
