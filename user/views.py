@@ -30,9 +30,6 @@ class UserAddService(LoginRequiredMixin, View):
         name = request.POST.get("name")
         price = request.POST.get("price")
         description = request.POST.get("description")
-        context = {
-            "form": form,
-        }
         
         if not user.fields_valid():
             messages.add_message(
@@ -45,19 +42,24 @@ class UserAddService(LoginRequiredMixin, View):
              
         if form.is_valid():
             if Service.objects.filter(name__icontains=name, user=user):
-                return HttpResponse("Le service existe déjà")
+                messages.add_message(
+                    request, 
+                    messages.ERROR, 
+                    f"Le service n'a été crée cas il existe déjà."
+                )
+                return render(request, self.template_name, context={"form": form})
             
             f = form.save(commit=False)
             f.user = user
             f.save()
-            
             messages.add_message(
+            
                 request, 
                 messages.SUCCESS, 
                 f"Vous venez d'ajouter le service {name}"
             )
             return redirect("user_list_services")
-        return render(request, self.template_name, context=context)
+        return render(request, self.template_name, context={"form": form})
             
 class UserListService(LoginRequiredMixin, View):
     def get(self, request):
