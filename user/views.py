@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.views import View
 from django.http import HttpResponse
@@ -174,6 +175,24 @@ class UserAppoitmentDetail(LoginRequiredMixin, View):
         
         return HttpResponse(content_appointmen)
 
+class UserAppoitmentDelete(LoginRequiredMixin, View):
+    def post(self, request, pk_appointment: int) -> HttpResponse:
+        user = request.user
+        appointments = user.appointmen_user.all()
+        appointment = get_object_or_404(
+            appointments,
+            pk=pk_appointment
+        )
+        appointment.delete()
+        nb = len(user.appointmen_user.all())
+        print(nb)
+        return HttpResponse(
+            "",
+            headers={
+                "HX-Trigger": json.dumps({
+                    "appoitment_delete": {"number_appointment": nb}
+                })
+            }
+        )
     
-    
-    
+     

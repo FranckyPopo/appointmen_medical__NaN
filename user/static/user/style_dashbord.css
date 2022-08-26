@@ -33,6 +33,10 @@
     transition: all 0.3s;
 }
 
+.div-delete:hover {
+  background-color: red;
+} 
+
 .title_form {
     margin-bottom: 30px !important;
     font-family: unset !important;
