@@ -44,11 +44,12 @@
                             </div>
                             <div class="row row-cols-3 row-cols-md-3 d-flex" style="justify-content: space-between;">
                                 {% for service in services %}
-                                    <div class="card" style="width: 17rem; padding: 0px !important; margin-top: 20px; 
+                                <div class="card" style="width: 17rem; padding: 0px !important; margin-top: 20px; 
                                     box-shadow: 0px 0px 10px 0px rgb(82 63 105 / 10%);
                                     -webkit-box-shadow: 0px 0px 20px 0px rgb(82 63 105 / 10%);
                                     -moz-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
                                     -ms-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);">
+                                    <img src="{{ service.photo.url }}" class="card-img-top" alt="..." style="height: 55%;">
                                         <div class="card-body">
                                             <div style="margin-bottom: 10px;">
                                                 <h5 class="title_centre">{{ service.name }}</h5>

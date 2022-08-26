@@ -46,7 +46,7 @@
                             {% endfor %}
                         {% endif %}
                         
-                        <form action="{% url 'user_add_service'  %}" method="POST">
+                        <form action="{% url 'user_add_service'  %}" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
 
                             {% if form.name.errors  %}
@@ -62,6 +62,13 @@
                                 </small>
                             {% endif %}
                             {% render_field form.description placeholder="Entrer un description claire du service" %}
+                        
+                            {% if form.photo.errors  %}
+                                <small id="passwordHelpInline" class="error-form">
+                                    {{form.photo.errors}}
+                                </small>
+                            {% endif %}
+                            {% render_field form.photo %}
                         
                             <button type="submit" class="site-btn">Ajouter</button>
                         </form>

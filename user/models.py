@@ -1,6 +1,5 @@
 from django.db import models
 from django.conf import settings 
-from django.core.validators import MinValueValidator
 from phonenumber_field.modelfields import PhoneNumberField
 
 import datetime 
@@ -13,6 +12,7 @@ class Service(RepeatFields):
         on_delete=models.CASCADE,
         related_name="service_user",
     )
+    photo = models.ImageField(upload_to="photo_service")
     name = models.CharField(max_length=150)
     active = models.BooleanField(default=True) 
     description = models.TextField(max_length=200)

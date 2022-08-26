@@ -25,7 +25,7 @@ class UserAddService(LoginRequiredMixin, View):
     def post(self, request):
         user = request.user
         form_profile = AuthenticationFormEditUser(instance=user)
-        form = self.form_class(request.POST)
+        form = self.form_class(request.POST, request.FILES)
         name = request.POST.get("name")
         price = request.POST.get("price")
         description = request.POST.get("description")
@@ -46,7 +46,10 @@ class UserAddService(LoginRequiredMixin, View):
             if Service.objects.filter(name__icontains=name, user=user):
                 return HttpResponse("Le service existe déjà")
             
-            Service.objects.create(name=name, description=description, user=user)
+            f = form.save(commit=False)
+            f.user = user
+            f.save()
+            
             messages.add_message(
                 request, 
                 messages.SUCCESS, 
@@ -84,7 +87,7 @@ class UserEditService(LoginRequiredMixin, View):
     
     def post(self, request, pk_service=None):
         service = get_object_or_404(self.model, pk=pk_service, user=request.user, active=True)
-        form = self.form_class(request.POST, instance=service)
+        form = self.form_class(request.POST, request.FILES, instance=service)
         context = {
             "form": form,
             "pk_service": service.pk,
@@ -109,7 +112,6 @@ class UserHealthCenters(View):
         else:
             qs = get_list_or_404(get_user_model(), town__slug=slug_town, is_active=True, is_verification_account=True)
         
-        print("/////////:", qs)
         context = {
             "centres": qs,
             "towns": Town.objects.filter(active=True),            

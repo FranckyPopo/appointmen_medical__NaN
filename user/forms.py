@@ -6,7 +6,7 @@ from user.models import Service, Appointmen
 class FormService(forms.ModelForm):
     class Meta:
         model = Service
-        fields = ["name", "description",]
+        fields = ["name", "description", "photo"]
         
 class UserFormAppoitmen(forms.ModelForm):
     email = forms.EmailField(required=True)
