@@ -30,7 +30,11 @@
                             <div class="row row-cols-1 row-cols-md-8" style="width: 112%;">
                                 <div class="card mb-3" style="padding: 0; width: 112%;">
                                     <div class="div-image">
-                                        <img src="{{ center.photo.url }}" class="card-img-top" alt="..." >
+                                        {% if center.photo %}
+                                            <img src="{{ center.photo.url }}" class="card-img-top" alt="..." >
+                                        {% else %}
+                                            <img src="{% static 'front/img/breadcrumb-bg.jpg' %}" class="card-img-top" alt="..." >
+                                        {% endif %}
                                     </div>
                                     <div class="card-body">
                                       <h5 class="card-title">{{ center.medical_center_name }}</h5>
