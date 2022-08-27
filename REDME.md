@@ -1,5 +1,2 @@
-- Crée une page pour voir les consultations
-- Donner la posibilé à l'utilisateur de choisir une commune lors de son incription 
+
 - Implémenter la fonctionnalité pagination
-- Amélioration des liens sur les différentes pages
-- Modifier l'icone du mot de passe
