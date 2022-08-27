@@ -4,7 +4,7 @@
 
     {% block "content" %}
         <!-- Breadcrumb Section Begin -->
-        <section class="breadcrumb-option spad set-bg" data-setbg="{{ center.photo.url }}">
+        <section class="breadcrumb-option spad set-bg" data-setbg="{% static 'front/img/breadcrumb-bg.jpg' %}">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
@@ -27,33 +27,36 @@
                 <div class="row">
                     <div class="col-lg-8 order-lg-2">
                         <div class="services__details">
-                            <div class="row row-cols-1 row-cols-md-8">
-                                <div class="card" style="box-shadow: 0px 0px 10px 0px rgb(82 63 105 / 10%);
-                                -webkit-box-shadow: 0px 0px 20px 0px rgb(82 63 105 / 10%);
-                                -moz-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
-                                -ms-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);">
+                            <div class="row row-cols-1 row-cols-md-8" style="width: 112%;">
+                                <div class="card mb-3" style="padding: 0; width: 112%;">
+                                    <div class="div-image">
+                                        {% if center.photo %}
+                                            <img src="{{ center.photo.url }}" class="card-img-top" alt="..." >
+                                        {% else %}
+                                            <img src="{% static 'front/img/breadcrumb-bg.jpg' %}" class="card-img-top" alt="..." >
+                                        {% endif %}
+                                    </div>
                                     <div class="card-body">
-                                      <h5 class="title_centre" style="margin-bottom: 20px;">{{ center.medical_center_name }}</h5>
+                                      <h5 class="card-title">{{ center.medical_center_name }}</h5>
                                       <p class="card-text">{{ center.description }}</p>
                                     </div>
                                 </div>
-                               
                             </div>
                             <div>
-                                <h4 class="title_centre" style="margin-top: 20px;">Services<h4>
+                                <h4 class="title_centre" style="margin-top: 20px; margin-bottom: 21px;">Services<h4>
                             </div>
-                            <div class="row row-cols-3 row-cols-md-3 d-flex" style="justify-content: space-between;">
+                            <div class="row row-cols-1 row-cols-md-3 g-4" style="width: 112%;">
                                 {% for service in services %}
-                                    <div class="card" style="width: 17rem; padding: 0px !important; margin-top: 20px; 
-                                    box-shadow: 0px 0px 10px 0px rgb(82 63 105 / 10%);
-                                    -webkit-box-shadow: 0px 0px 20px 0px rgb(82 63 105 / 10%);
-                                    -moz-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
-                                    -ms-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);">
-                                        <div class="card-body">
-                                            <div style="margin-bottom: 10px;">
-                                                <h5 class="title_centre">{{ service.name }}</h5>
-                                            </div>
+                                    <div class="col">
+                                        <div class="card h-100 w-200" style="box-shadow: 0px 0px 10px 0px rgb(82 63 105 / 10%);
+                                        -webkit-box-shadow: 0px 0px 20px 0px rgb(82 63 105 / 10%);
+                                        -moz-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+                                        -ms-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);">
+                                            <img src="{{ service.photo.url }}" class="card-img-top" alt="...">
+                                            <div class="card-body">
+                                            <h5 class="card-title">{{ service.name }}</h5>
                                             <p class="card-text">{{ service.description }}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 {% endfor %}

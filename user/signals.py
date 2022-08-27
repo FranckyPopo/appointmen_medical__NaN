@@ -54,6 +54,5 @@ def generator_slug(instance, **kwargs):
         instance.slug = f"{slugify(instance.medical_center_name)}-abidjan-cote-ivoire"
         return 
     
-    if instance.slug:
-        instance.slug = slugify(instance.name)
+    instance.slug = slugify(instance.name)
         

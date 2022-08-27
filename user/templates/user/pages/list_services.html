@@ -43,6 +43,32 @@
             {% for service in services %}
                 <div class="col-sm-6">
                     <div class="card" style="height: 100%;">
+                        <img src="{{ service.photo.url }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title" hx-post="{% url 'user_delete_service' service.pk %}">
+                                {{ service.name }}
+                            </h5>
+                            <p class="card-text">{{ service.description|truncatechars_html:"190" }}</p>
+                            <form method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <a 
+                                    type="Submit"
+                                    class="btn btn-danger"
+                                    hx-post="{% url 'user_delete_service' service.pk %}"
+                                    hx-swap="outerHTML"
+                                    hx-target="closest .col-sm-6"
+                                    hx-trigger="click"
+                                    hx-confirm="Êtes-vous sûr ?">
+                                    Supprimer
+                                </a>
+                            </form>
+                            <a href="{% url 'user_edit_service' service.pk %}" class="btn btn-primary">Modifier</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card" style="height: 100%;">
+                        <img src="{{ service.photo.url }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title" hx-post="{% url 'user_delete_service' service.pk %}">
                                 {{ service.name }}

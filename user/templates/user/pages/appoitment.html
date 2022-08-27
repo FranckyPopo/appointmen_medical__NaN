@@ -32,24 +32,42 @@
                     <div class="contact-header">
                         <div class="contact-left">
                             <h5 class="title">Rendez-vous</h5>
-                            <span class="badge badge-sb-success">{{ appointmens|length }}</span>
+                            <span class="badge badge-sb-success" id="number_appointments">{{ appointmens|length }}</span>
                         </div>
                     </div>
                     <ul class="contact-list">
                         <li class="contact-list-item">
-                            {% for appointmen in appointmens %}
-                                <a 
-                                    hx-get="{% url 'user_appointment_detail' appointmen.pk %}"
-                                    hx-trigger="click"
-                                    hx-target="#appointmen_content"
-                                    hx-swap="closest outerHTML">
-                                    <div class="user" style="margin-bottom: 20px;">
-                                        <div class="user_hover">
-                                            <p class="user-name">{{ appointmen.name|title }}</p>
-                                            <p class="user-designation">{{ appointmen.email }}</p>
+                            {% for appointment in appointmens %}
+                                <div class="container-appointment">
+                                    <a>
+                                        <div class="user d-flex" style="margin-bottom: 20px; justify-content: space-between;">
+                                            <div 
+                                                class="user_hover"
+                                                hx-get="{% url 'user_appointment_detail' appointment.pk %}"
+                                                hx-trigger="click"
+                                                hx-target="#appointmen_content"
+                                                hx-swap="closest outerHTML">
+                                                <p class="user-name">{{ appointment.name|title }}</p>
+                                                <p class="user-designation">{{ appointment.email }}</p>
+                                            </div>
+    
+                                            <form method="post">
+                                                {% csrf_token %}
+                                                <!-- Button delete-->
+                                                <div 
+                                                    hx-post="{% url 'appointment_delete' appointment.pk %}"
+                                                    hx-swap="outerHTML"
+                                                    hx-target="closest .container-appointment"
+                                                    hx-confirm="Êtes-vous sûr ?">
+    
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="black" class="bi bi-trash3" viewBox="0 0 16 16">
+                                                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                                                      </svg>
+                                                </div>
+                                            </form>
                                         </div>
-                                    </div>
-                                <a/>
+                                    <a/>
+                                </div>
                             {% endfor %}
                         </li>
                     </ul>
@@ -57,7 +75,11 @@
             </div>
             <div class="email-desc-wrapper" id="appointmen_content">
                 <div class="email-body">
-                    <h5 style="display: inline;">Cliquer sur en rendez-vous pour avoir plus de détail</span>
+                    {% if appointmens %}
+                        <h5 style="display: inline;">Cliquer sur en rendez-vous pour avoir plus de détail.</span>
+                    {% else %}
+                        <h5 style="display: inline;">Vous avez aucun rendez-vous.</span>
+                    {% endif %}
                 </div>                
             </div>
         </div>

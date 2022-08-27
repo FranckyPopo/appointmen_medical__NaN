@@ -35,15 +35,17 @@
                             </div>
                             <div class="row row-cols-1 row-cols-md-3 g-4">
                                 {% for centre in centres %}
-                                    <div class="card" style="width: 17rem; padding: 0px !important; margin-right: 25px; margin-top: 47px;">
-                                        <img src="{{ centre.photo.url }}" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <div style="margin-bottom: 10px;">
-                                                <a href="{% url 'user_health_center_detail' centre.slug %}" id="title_centre"> {{ centre.medical_center_name }}</a>
+                                    {% if centre.fields_valid %}
+                                        <div class="card" style="width: 17rem; padding: 0px !important; margin-right: 25px; margin-top: 47px;">
+                                            <img src="{{ centre.photo.url }}" class="card-img-top" alt="...">
+                                            <div class="card-body">
+                                                <div style="margin-bottom: 10px;">
+                                                    <a href="{% url 'user_health_center_detail' centre.slug %}" id="title_centre"> {{ centre.medical_center_name }}</a>
+                                                </div>
+                                                <p class="card-text">{{ centre.description|truncatechars_html:"190" }}</p>
                                             </div>
-                                            <p class="card-text">{{ centre.description|truncatechars_html:"190" }}</p>
                                         </div>
-                                    </div>
+                                    {% endif %}
                                 {% endfor %}
                             </div>
                         </div>

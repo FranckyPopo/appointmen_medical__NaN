@@ -7,7 +7,7 @@ import uuid
 class RepeatFields(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    
+
     class Meta:
         abstract = True
 
@@ -41,7 +41,7 @@ class Town(RepeatFields):
         
 class User(AbstractUser, RepeatFields):
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["username"]
+    REQUIRED_FIELDS = ["username", "phone_number"]
     email = models.EmailField(unique=True)
     medical_center_name = models.CharField(max_length=150)
     address = models.CharField(max_length=150)

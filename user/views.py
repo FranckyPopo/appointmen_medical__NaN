@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.views import View
 from django.http import HttpResponse
@@ -25,13 +26,10 @@ class UserAddService(LoginRequiredMixin, View):
     def post(self, request):
         user = request.user
         form_profile = AuthenticationFormEditUser(instance=user)
-        form = self.form_class(request.POST)
+        form = self.form_class(request.POST, request.FILES)
         name = request.POST.get("name")
         price = request.POST.get("price")
         description = request.POST.get("description")
-        context = {
-            "form": form,
-        }
         
         if not user.fields_valid():
             messages.add_message(
@@ -40,20 +38,28 @@ class UserAddService(LoginRequiredMixin, View):
                 f"""Vous devez remplir certaint champ dans
                 les paramétres du profile avant d'ajouter un service."""
             )
-            return render(request, self.template_name, context=context)
+            return render(request, self.template_name, context={"form": form})
              
         if form.is_valid():
             if Service.objects.filter(name__icontains=name, user=user):
-                return HttpResponse("Le service existe déjà")
+                messages.add_message(
+                    request, 
+                    messages.ERROR, 
+                    f"Le service n'a été crée cas il existe déjà."
+                )
+                return render(request, self.template_name, context={"form": form})
             
-            Service.objects.create(name=name, description=description, user=user)
+            f = form.save(commit=False)
+            f.user = user
+            f.save()
             messages.add_message(
+            
                 request, 
                 messages.SUCCESS, 
                 f"Vous venez d'ajouter le service {name}"
             )
             return redirect("user_list_services")
-        return render(request, self.template_name, context=context)
+        return render(request, self.template_name, context={"form": form})
             
 class UserListService(LoginRequiredMixin, View):
     def get(self, request):
@@ -84,7 +90,7 @@ class UserEditService(LoginRequiredMixin, View):
     
     def post(self, request, pk_service=None):
         service = get_object_or_404(self.model, pk=pk_service, user=request.user, active=True)
-        form = self.form_class(request.POST, instance=service)
+        form = self.form_class(request.POST, request.FILES, instance=service)
         context = {
             "form": form,
             "pk_service": service.pk,
@@ -109,7 +115,6 @@ class UserHealthCenters(View):
         else:
             qs = get_list_or_404(get_user_model(), town__slug=slug_town, is_active=True, is_verification_account=True)
         
-        print("/////////:", qs)
         context = {
             "centres": qs,
             "towns": Town.objects.filter(active=True),            
@@ -172,6 +177,24 @@ class UserAppoitmentDetail(LoginRequiredMixin, View):
         
         return HttpResponse(content_appointmen)
 
+class UserAppoitmentDelete(LoginRequiredMixin, View):
+    def post(self, request, pk_appointment: int) -> HttpResponse:
+        user = request.user
+        appointments = user.appointmen_user.all()
+        appointment = get_object_or_404(
+            appointments,
+            pk=pk_appointment
+        )
+        appointment.delete()
+        nb = len(user.appointmen_user.all())
+        print(nb)
+        return HttpResponse(
+            "",
+            headers={
+                "HX-Trigger": json.dumps({
+                    "appoitment_delete": {"number_appointment": nb}
+                })
+            }
+        )
     
-    
-    
+     

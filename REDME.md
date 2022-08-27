@@ -1,2 +1,5 @@
-
-- Implémenter la fonctionnalité pagination
+- Faire la présentation du projet
+- Ajouter le projet en ligne
+- Ajouter une pagination
+- Ajouter la fonctionnalité de recherche
+- Afficher une alert quand on supprime un service
