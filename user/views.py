@@ -38,7 +38,7 @@ class UserAddService(LoginRequiredMixin, View):
                 f"""Vous devez remplir certaint champ dans
                 les paramétres du profile avant d'ajouter un service."""
             )
-            return render(request, self.template_name, context=context)
+            return render(request, self.template_name, context={"form": form})
              
         if form.is_valid():
             if Service.objects.filter(name__icontains=name, user=user):
