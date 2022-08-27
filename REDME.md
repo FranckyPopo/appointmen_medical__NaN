@@ -1,5 +1,5 @@
-- Crée une page pour voir les consultations
-- Donner la posibilé à l'utilisateur de choisir une commune lors de son incription 
-- Implémenter la fonctionnalité pagination
-- Amélioration des liens sur les différentes pages
-- Modifier l'icone du mot de passe
+- Faire la présentation du projet
+- Ajouter le projet en ligne
+- Ajouter une pagination
+- Ajouter la fonctionnalité de recherche
+- Afficher une alert quand on supprime un service
