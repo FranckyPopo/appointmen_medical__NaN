@@ -54,3 +54,7 @@ class Appointmen(RepeatFields):
     email = models.EmailField(blank=True)
     message = models.TextField()
     date_appointmen = models.DateField(default=datetime.date.today)
+    
+    @staticmethod
+    def format_date():
+        pass

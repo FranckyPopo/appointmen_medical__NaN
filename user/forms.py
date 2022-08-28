@@ -10,10 +10,8 @@ class FormService(forms.ModelForm):
         
 class UserFormAppoitmen(forms.ModelForm):
     email = forms.EmailField(required=True)
-    date_appointmen = forms.DateField(required=True)
     
     class Meta:
         model = Appointmen
-        fields = ["name", "phone_number", "message", "motif", "email", "date_appointmen"]
+        fields = ["name", "phone_number", "message", "motif", "email"]
         
-

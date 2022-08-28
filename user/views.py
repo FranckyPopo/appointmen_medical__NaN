@@ -1,4 +1,3 @@
-import json
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.views import View
 from django.http import HttpResponse
@@ -8,8 +7,11 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
 from django.template.loader import render_to_string
 
+import json
+
 from user.forms import FormService, UserFormAppoitmen
 from user.models import Service, Appointmen
+from user.utils import format_date_appointment
 from authentication.models import Town
 from authentication.forms import AuthenticationFormEditUser
 
@@ -137,6 +139,7 @@ class UserHealthCenterDetail(View):
     
     def post(self, request, slug_user):
         pk_service = request.POST.get("service", "")
+        date_appointment = request.POST.get("date_appointmen", "")
         user = get_object_or_404(get_user_model(), slug=slug_user)
         service = get_object_or_404(Service, pk=pk_service, user=user)
         form = self.form_class(request.POST)
@@ -150,12 +153,15 @@ class UserHealthCenterDetail(View):
             f = form.save(commit=False)
             f.user = user
             f.service = service
+            f.date_appointment = format_date_appointment(date_appointment)
             f.save()
+            print("yes")
             messages.add_message(
                 request, 
                 messages.SUCCESS, 
                 f"Vôtre rendez-vous a été pris avec success."
             )
+            return redirect("user_appointment_detail")
 
         return render(request, self.template_name, context=context)
 
