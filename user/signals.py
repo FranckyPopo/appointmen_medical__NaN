@@ -12,11 +12,13 @@ import uuid
 from authentication.models import AccountVerification, Town
 from user.models import Service, Appointmen
 
+env = environ.Env()
+environ.Env.read_env(env_file=str(settings.BASE_DIR / "appointmen" / ".env"))
+url_domaine = env('ALLOWED_HOSTS')
+
 @receiver(post_save, sender=get_user_model())
 def sending_registration_confirmation_email(instance, created, **kwargs):
-    env = environ.Env()
-    environ.Env.read_env(env_file=str(settings.BASE_DIR / "appointmen" / ".env"))
-    address = env('ALLOWED_HOSTS')
+    
     if created:
         account = AccountVerification.objects.create(user=instance)
         token = account.token
@@ -27,7 +29,7 @@ def sending_registration_confirmation_email(instance, created, **kwargs):
         )
         body = f"""
         Félicitation vous venez de crée vôtre compte.
-        Cliquer sur le lien pour l'activer: https://{address}{url}
+        Cliquer sur le lien pour l'activer: https://{url_domaine}{url}
         """
         # Envoie email    
         email = EmailMessage('Bienvenue sur Health access', body, to=[email_centre])
@@ -35,9 +37,6 @@ def sending_registration_confirmation_email(instance, created, **kwargs):
         
 @receiver(post_save, sender=Appointmen)
 def confirmation_appointmen(instance, created, **kwargs): 
-    env = environ.Env()
-    environ.Env.read_env(env_file=str(settings.BASE_DIR / "appointmen" / ".env"))
-    address = env('ALLOWED_HOSTS')     
     if created:
         email_center = instance.email
         url = reverse("front_contact")
@@ -45,7 +44,7 @@ def confirmation_appointmen(instance, created, **kwargs):
         Félicitation vôtre rendez-vous a été pris avec success pour le {instance.date_appointmen.strftime("%d/%m/%Y")}.
         Veuillez vous presenter à la date indiqué au rendez-vous. 
         En cas de non présence le rendez-vous sera annulé automatiquement.
-        Pour toutes autres questions veuillez nous contacter: https://{address}{url}
+        Pour toutes autres questions veuillez nous contacter: https://{url_domaine}{url}
         """
         # Envoie email    
         email = EmailMessage('Rendez-vous pris avec success', body, to=[email_center])
