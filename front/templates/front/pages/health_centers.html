@@ -66,6 +66,7 @@
                                         <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
                                             <div class="card-body">
                                                 <ul>
+                                                    <li><a href="{% url 'user_health_centers' "all" %}" style="text-decoration: none;">Tout</a></li>
                                                     {% for town in towns %}
                                                         <li><a href="{% url 'user_health_centers' town.slug %}" style="text-decoration: none;">{{ town.name }}</a></li>
                                                     {% endfor %}
