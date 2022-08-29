@@ -28,13 +28,13 @@ def sending_registration_confirmation_email(instance, created, **kwargs):
         email = EmailMessage('Bienvenue sur Health access', body, to=[email_centre])
         email.send()
         
-# @receiver(post_save, sender=Appointmen)
+@receiver(post_save, sender=Appointmen)
 def confirmation_appointmen(instance, created, **kwargs):      
     if created:
         email_center = instance.email
         url = reverse("front_contact")
         body = f"""
-        Félicitation vôtre rendez-vous a été pris avec success pour le {instance.date_appointmen}.
+        Félicitation vôtre rendez-vous a été pris avec success pour le {instance.date_appointmen.strftime("%d/%m/%Y")}.
         Veuillez vous presenter à la date indiqué au rendez-vous. 
         En cas de non présence le rendez-vous sera annulé automatiquement.
         Pour toutes autres questions veuillez nous contacter: http://127.0.0.1:8000{url}
