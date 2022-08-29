@@ -1,7 +1,7 @@
 - Ajouter le projet en ligne [x]
 - Formatage de la date la du rendez-vous [x]
-- Faire la présentation du projet
 - Automatiser la création de centre et des services
-- Ajouter une pagination
+- scrool infini
+- Faire la présentation du projet
 - Ajouter la fonctionnalité de recherche
 - Afficher une alert quand on supprime un service
