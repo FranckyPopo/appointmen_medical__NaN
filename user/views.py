@@ -75,7 +75,15 @@ class UserDeleteService(LoginRequiredMixin, View):
     def post(self, request, pk_service):
         service = get_object_or_404(Service, pk=pk_service, active=True, user=request.user)
         service.delete()
-        return HttpResponse("")
+        return HttpResponse(
+            "",
+            headers={
+                "HX-Trigger": json.dumps({
+                    "service_delete": None
+                })
+            }
+        )
+        
 
 class UserEditService(LoginRequiredMixin, View):
     template_name = "user/pages/edit_service.html"
@@ -197,7 +205,6 @@ class UserAppoitmentDelete(LoginRequiredMixin, View):
         )
         appointment.delete()
         nb = len(user.appointmen_user.all())
-        print(nb)
         return HttpResponse(
             "",
             headers={

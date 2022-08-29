@@ -1,5 +1,5 @@
 - Ajouter le projet en ligne [x]
 - Formatage de la date du rendez-vous [x]
-- Faire la présentation du projet
+- Faire la présentation du projet 
 - Ajouter la fonctionnalité de recherche
 - Afficher une alert quand on supprime un service
