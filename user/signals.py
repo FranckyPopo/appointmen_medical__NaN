@@ -28,7 +28,7 @@ def sending_registration_confirmation_email(instance, created, **kwargs):
         email = EmailMessage('Bienvenue sur Health access', body, to=[email_centre])
         email.send()
         
-@receiver(post_save, sender=Appointmen)
+# @receiver(post_save, sender=Appointmen)
 def confirmation_appointmen(instance, created, **kwargs):      
     if created:
         email_center = instance.email

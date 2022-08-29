@@ -90,8 +90,8 @@
                                     {% endfor %}
                                 {% endif %}
                             
-                                <!-- Form appointment -->
-                            <form method="POST" action="{% url 'user_appointment_detail' %}">
+                            <!-- Form appointment -->
+                            <form method="POST">
                                 {% csrf_token %}
 
                                 {% if form.name.errors  %}

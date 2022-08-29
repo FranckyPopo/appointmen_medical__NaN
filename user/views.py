@@ -150,18 +150,22 @@ class UserHealthCenterDetail(View):
             "form": form,
         } 
         if form.is_valid():
+            context = {
+                "center": user,
+                "services": user.service_user.all(),
+                "form": self.form_class,
+            } 
             f = form.save(commit=False)
             f.user = user
             f.service = service
-            f.date_appointment = format_date_appointment(date_appointment)
+            f.date_appointmen = format_date_appointment(date_appointment)
             f.save()
-            print("yes")
             messages.add_message(
                 request, 
                 messages.SUCCESS, 
                 f"Vôtre rendez-vous a été pris avec success."
             )
-            return redirect("user_appointment_detail")
+            return render(request, self.template_name, context=context)
 
         return render(request, self.template_name, context=context)
 
