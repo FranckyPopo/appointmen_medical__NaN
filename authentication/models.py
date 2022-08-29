@@ -14,7 +14,10 @@ class RepeatFields(models.Model):
 class Country(RepeatFields):
     name = models.CharField(max_length=150)
     active = models.BooleanField(default=True)
-    
+
+    def __str__(self):
+        return self.name
+
 class City(RepeatFields):
     name = models.CharField(max_length=150)
     active = models.BooleanField(default=True)
@@ -24,6 +27,9 @@ class City(RepeatFields):
         null=True,
         related_name="city_country",
     )
+
+    def __str__(self):
+        return self.name
 
 class Town(RepeatFields):
     name = models.CharField(max_length=150) 
@@ -76,7 +82,7 @@ class User(AbstractUser, RepeatFields):
         return False
     
     def __str__(self):
-        return self.username or self.medical_center_name
+        return self.medical_center_name
         
 class AccountVerification(RepeatFields):
     user = models.OneToOneField(
@@ -88,7 +94,7 @@ class AccountVerification(RepeatFields):
     token = models.UUIDField(default=uuid.uuid4)
 
     def __str__(self):
-        return f"{self.user}" or f"{self.token}"
+        return self.user
 
 
    

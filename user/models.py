@@ -54,6 +54,7 @@ class Appointmen(RepeatFields):
     email = models.EmailField(blank=True)
     message = models.TextField()
     date_appointmen = models.DateField()
-    # date_appointmen = models.DateField(default=datetime.date.today)
-    
+
+    def __str__(self):
+        return f"{self.name} ({self.email})"    
     
