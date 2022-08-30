@@ -59,6 +59,18 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col">
+                                        <div class="card h-100 w-200" style="box-shadow: 0px 0px 10px 0px rgb(82 63 105 / 10%);
+                                        -webkit-box-shadow: 0px 0px 20px 0px rgb(82 63 105 / 10%);
+                                        -moz-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+                                        -ms-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);">
+                                            <img src="{{ service.photo.url }}" class="card-img-top" style="height: 60%;" alt="...">
+                                            <div class="card-body">
+                                            <h5 class="card-title">{{ service.name }}</h5>
+                                            <p class="card-text">{{ service.description }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 {% endfor %}
                             </div>
                             {% if not services %}
