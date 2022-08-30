@@ -1,5 +1,3 @@
-- Ajouter le projet en ligne [x]
-- Formatage de la date du rendez-vous [x]
-- Afficher une alert quand on supprime un service [x]
+
+- Chercher a savoir pourquoir les notifications d'allert ne s'affiche pas
 - Faire la présentation du projet 
-- Ajouter la fonctionnalité de recherche

@@ -84,7 +84,6 @@ class UserDeleteService(LoginRequiredMixin, View):
             }
         )
         
-
 class UserEditService(LoginRequiredMixin, View):
     template_name = "user/pages/edit_service.html"
     form_class = FormService
