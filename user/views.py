@@ -203,12 +203,12 @@ class UserAppoitmentDelete(LoginRequiredMixin, View):
             pk=pk_appointment
         )
         appointment.delete()
-        nb = len(user.appointmen_user.all())
+        number_appointment = len(user.appointmen_user.all())
         return HttpResponse(
             "",
             headers={
                 "HX-Trigger": json.dumps({
-                    "appoitment_delete": {"number_appointment": nb}
+                    "appoitment_delete": {"number_appointment": number_appointment},
                 })
             }
         )

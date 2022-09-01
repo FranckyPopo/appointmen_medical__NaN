@@ -36,10 +36,10 @@
                         </div>
                     </div>
                     <ul class="contact-list">
-                        <li class="contact-list-item">
-                            {% for appointment in appointmens %}
+                        {% for appointment in appointmens %}
+                            <li class="contact-list-item">
                                 <div class="container-appointment">
-                                    <a>
+                                    <a style="display: block;">
                                         <div class="user d-flex" style="margin-bottom: 20px; justify-content: space-between;">
                                             <div 
                                                 class="user_hover"
@@ -57,7 +57,7 @@
                                                 <div 
                                                     hx-post="{% url 'appointment_delete' appointment.pk %}"
                                                     hx-swap="outerHTML"
-                                                    hx-target="closest .container-appointment"
+                                                    hx-target="closest .contact-list-item"
                                                     hx-confirm="Êtes-vous sûr ?">
     
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="black" class="bi bi-trash3" viewBox="0 0 16 16">
@@ -68,8 +68,8 @@
                                         </div>
                                     <a/>
                                 </div>
-                            {% endfor %}
-                        </li>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
