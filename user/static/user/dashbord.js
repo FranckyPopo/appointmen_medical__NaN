@@ -24,14 +24,14 @@ htmx.on("htmx:afterOnLoad", function (e){
     let appointmen_content = document.querySelector(".email-body")
     let list_appointement = document.querySelectorAll(".contact-list-item")
 
-    setInterval(() => {
+    setTimeout(() => {
         if (list_appointement.length === 0){
             appointmen_content.innerHTML = "<h5>Vous avez aucun rendez-vous</h5>."
         }
         else {
             appointmen_content.innerHTML = "<h5>Cliquer sur en rendez-vous pour avoir plus de détail</h5>."
         }
-    }, 500)
+    }, 250)
 
 });
 
