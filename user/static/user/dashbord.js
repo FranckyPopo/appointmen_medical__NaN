@@ -21,15 +21,15 @@ htmx.on("appoitment_delete", function (e){
 });
 
 htmx.on("htmx:afterOnLoad", function (e){
-    let appointmen_content = document.querySelector(".email-body")
+    let appointmen_content = document.querySelector("#appointmen_content")
     let list_appointement = document.querySelectorAll(".contact-list-item")
 
     setTimeout(() => {
         if (list_appointement.length === 0){
-            appointmen_content.innerHTML = "<h5>Vous avez aucun rendez-vous</h5>."
+            appointmen_content.innerHTML = "<h5 style='display: inline';>Vous avez aucun rendez-vous</h5>."
         }
         else {
-            appointmen_content.innerHTML = "<h5>Cliquer sur en rendez-vous pour avoir plus de détail</h5>."
+            appointmen_content.innerHTML = "<h5 style='display: inline';>Cliquer sur en rendez-vous pour avoir plus de détail</h5>."
         }
     }, 250)
 
