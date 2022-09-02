@@ -57,23 +57,12 @@ class User(AbstractUser, RepeatFields):
     phone_number_two = PhoneNumberField(region="CI", blank=True)
     fax = PhoneNumberField(region="CI", blank=True)
     photo = models.ImageField(blank=True, upload_to="photo_user")
-    
-    country = models.ForeignKey(
-        Country,
-        models.SET_NULL,
-        null=True,
-    )
-    city = models.ForeignKey(
-        City,
-        models.SET_NULL,
-        null=True,
-    )
+    is_verification_account = models.BooleanField(default=False)
     town = models.ForeignKey(
         Town,
         models.SET_NULL,
         null=True,
     )
-    is_verification_account = models.BooleanField(default=False)
     
     def fields_valid(self):
         if(self.email and self.medical_center_name and
