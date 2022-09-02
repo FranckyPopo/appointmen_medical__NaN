@@ -147,6 +147,7 @@ class UserHealthCenterDetail(View):
     def post(self, request, slug_user):
         pk_service = request.POST.get("service", "")
         date_appointment = request.POST.get("date_appointmen", "")
+        _format_date_appointment = None
         user = get_object_or_404(get_user_model(), slug=slug_user)
         service = get_object_or_404(Service, pk=pk_service, user=user)
         form = self.form_class(request.POST)

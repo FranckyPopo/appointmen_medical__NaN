@@ -13,5 +13,12 @@ class UserFormAppoitmen(forms.ModelForm):
     
     class Meta:
         model = Appointmen
-        fields = ["name", "phone_number", "message", "motif", "email"]
+        fields = [
+            "name", 
+            "phone_number", 
+            "message", 
+            "motif", 
+            "email",
+            "date_appointmen"
+        ]
         
