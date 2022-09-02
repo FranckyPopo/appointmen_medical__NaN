@@ -1,7 +1,8 @@
 
 htmx.on("appoitment_delete", function (e){
     let number_appointments = document.querySelector("#number_appointments")
-
+    let appointmen_content = document.querySelector("#appointmen_content")
+    
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -18,21 +19,9 @@ htmx.on("appoitment_delete", function (e){
     })
 
     number_appointments.innerHTML = e.detail.number_appointment
-});
 
-htmx.on("htmx:afterOnLoad", function (e){
-    let appointmen_content = document.querySelector("#appointmen_content")
-    let list_appointement = document.querySelectorAll(".contact-list-item")
-
-    setTimeout(() => {
-        if (list_appointement.length === 0){
-            appointmen_content.innerHTML = "<h5 style='display: inline';>Vous avez aucun rendez-vous</h5>."
-        }
-        else {
-            appointmen_content.innerHTML = "<h5 style='display: inline';>Cliquer sur en rendez-vous pour avoir plus de détail</h5>."
-        }
-    }, 250)
-
+    appointmen_content.innerHTML = ""
+    
 });
 
 htmx.on("service_delete", function (e){
