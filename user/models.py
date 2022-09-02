@@ -2,8 +2,6 @@ from django.db import models
 from django.conf import settings 
 from phonenumber_field.modelfields import PhoneNumberField
 
-import datetime 
-
 from authentication.models import RepeatFields
 
 class Service(RepeatFields):
@@ -57,3 +55,8 @@ class Appointmen(RepeatFields):
     def __str__(self):
         return f"{self.name} ({self.email})"    
     
+class Contact(RepeatFields):
+    name = models.CharField(max_length=150)
+    email = models.EmailField()
+    phone_number = PhoneNumberField(blank=True)
+    message = models.TextField()

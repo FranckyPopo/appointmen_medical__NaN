@@ -4,12 +4,11 @@ from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.auth import get_user_model
-from django.urls import reverse_lazy
 from django.template.loader import render_to_string
 
 import json
 
-from user.forms import FormService, UserFormAppoitmen
+from user.forms import FormService, UserFormAppoitmen, UserContactForm
 from user.models import Service, Appointmen
 from user.utils import format_date_appointment
 from authentication.models import Town
@@ -214,4 +213,30 @@ class UserAppoitmentDelete(LoginRequiredMixin, View):
             }
         )
     
-     
+class UserContact(View):
+    class_form = UserContactForm
+    template_name = "front/pages/contact.html"
+
+    def post(self, request):
+        form = self.class_form(request.POST)
+
+        if form.is_valid():
+            form.save()
+            messages.add_message(
+                request, 
+                messages.SUCCESS, 
+                """La demande de contact contact
+                été envoyé avec success"""
+            )
+            return redirect("front_contact")
+
+        return render(
+            request, 
+            self.template_name, 
+            context={"form": form}
+        )
+
+    def http_method_not_allowed(self, request):
+        return redirect('front_index')
+
+    

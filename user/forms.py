@@ -1,7 +1,6 @@
 from django import forms
-from django.contrib.auth import get_user_model
 
-from user.models import Service, Appointmen
+from user.models import Service, Appointmen, Contact
 
 class FormService(forms.ModelForm):
     class Meta:
@@ -22,3 +21,15 @@ class UserFormAppoitmen(forms.ModelForm):
             "date_appointmen"
         ]
         
+class UserContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = [
+            "name",
+            "email",
+            "phone_number",
+            "created",
+            "updated",
+        ]
+
+

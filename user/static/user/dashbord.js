@@ -19,9 +19,7 @@ htmx.on("appoitment_delete", function (e){
     })
 
     number_appointments.innerHTML = e.detail.number_appointment
-
-    appointmen_content.innerHTML = ""
-    
+    appointmen_content.innerHTML = ""    
 });
 
 htmx.on("service_delete", function (e){

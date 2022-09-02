@@ -35,6 +35,9 @@ class AuthenticationRegister(View):
             return redirect("authentication_login")
         return render(request, self.template_name, context={"form": form})
     
+    def http_method_not_allowed(self, request):
+        return redirect('front_index')
+    
 class AuthenticationLogin(View):
     template_name = "authentication/login.html"
     form_class = forms.AuthenticationFormLogin
@@ -59,6 +62,10 @@ class AuthenticationLogin(View):
         messages.add_message(request, messages.ERROR, message)
         return redirect("authentication_login")
             
+    def http_method_not_allowed(self, request):
+        return redirect('front_index')
+            
+    
 class AuthenticationVerificationAccount(View):
     def get(self, request, token): 
         message = "Vôtre compte a été activé avec success"
@@ -70,6 +77,10 @@ class AuthenticationVerificationAccount(View):
         user.save()
         messages.add_message(request, messages.SUCCESS, message)
         return redirect("authentication_login")
+    
+    def http_method_not_allowed(self, request):
+        return redirect('front_index')
+    
     
 class AuthenticationEditProfile(LoginRequiredMixin, View):
     template_name = "user/pages/edit_user_profile.html"
@@ -104,6 +115,9 @@ class AuthenticationEditProfile(LoginRequiredMixin, View):
         )
         return render(request, self.template_name, context={"form": form})
         
+    def http_method_not_allowed(self, request):
+        return redirect('front_index')
+
 class AuthenticationPasswordChange(LoginRequiredMixin, PasswordChangeView):
     template_name = 'authentication/password_change.html'
     success_url = reverse_lazy('authentication_change_passwor_done')
@@ -123,11 +137,17 @@ class AuthenticationPasswordResetDone(LoginRequiredMixin, PasswordResetDoneView)
         email.send()
         
         return render(request, self.template_name)
-        
+    
+    def http_method_not_allowed(self, request):
+        return redirect('front_index')
+
 class AuthenticationLogout(LoginRequiredMixin, View):  
     def get(self, request):
         logout(request)
         return redirect("authentication_login")
+    
+    def http_method_not_allowed(self, request):
+        return redirect('front_index')
     
         
         

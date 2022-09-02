@@ -3,7 +3,7 @@
 {% load static %}
 
     {% block "content" %}
-    <!-- Breadcrumb Section Begin -->
+        <!-- Breadcrumb Section Begin -->
         <section class="breadcrumb-option spad set-bg" data-setbg="{% static 'front/img/breadcrumb-bg.jpg' %}">
             <div class="container">
                 <div class="row">
@@ -68,8 +68,8 @@
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="contact__form">
-                                <h3>Contact</h3>
-                                <form action="#">
+                                <h3>Besoin d'aide ? Contactez nous.</h3>
+                                <form action="{% url 'user_us' %}">
                                     <input type="text" placeholder="Name">
                                     <input type="text" placeholder="Email">
                                     <input type="text" placeholder="Website">
