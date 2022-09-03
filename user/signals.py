@@ -10,7 +10,7 @@ import environ
 import uuid
 
 from authentication.models import AccountVerification, Town
-from user.models import Service, Appointmen
+from user.models import Service, Appointmen, Contact
 
 env = environ.Env()
 environ.Env.read_env(env_file=str(settings.BASE_DIR / "appointmen" / ".env"))
@@ -34,6 +34,7 @@ def sending_registration_confirmation_email(instance, created, **kwargs):
         # Envoie email    
         email = EmailMessage('Bienvenue sur Health access', body, to=[email_centre])
         email.send()
+      
         
 @receiver(post_save, sender=Appointmen)
 def confirmation_appointmen(instance, created, **kwargs): 
@@ -48,10 +49,20 @@ def confirmation_appointmen(instance, created, **kwargs):
         """
         # Envoie email    
         email = EmailMessage('Rendez-vous pris avec success', body, to=[email_center])
-        try:
-            email.send()
-        except:
-            print("///////////////////////:::L'email n'a pas été envoyé")
+        email.send()
+     
+        
+@receiver(post_save, sender=Contact)
+def confirmation_contact(instance, created, **kwargs): 
+    if created:
+        email = instance.email
+        body = f"""
+        Votre demande de contact fait l'objet d'un traitement.
+        Nous vous rencontrerons bientôt. """
+        # Envoie email    
+        email = EmailMessage('Rendez-vous pris avec success', body, to=[email])
+        email.send()
+
 
 @receiver(pre_save, sender=get_user_model())
 @receiver(pre_save, sender=Town)
