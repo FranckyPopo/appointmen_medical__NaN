@@ -219,7 +219,6 @@ class UserContact(View):
 
     def post(self, request):
         form = self.class_form(request.POST)
-        print(form.errors)
         if form.is_valid():
             form.save()
             messages.add_message(

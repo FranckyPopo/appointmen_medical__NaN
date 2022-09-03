@@ -72,11 +72,34 @@
                                 <h3>Besoin d'aide ? Contactez nous.</h3>
                                 <form action="{% url 'user_us' %}" method="POST">
                                     {% csrf_token %}
+                                    {% if form.name.errors  %}
+                                        <small id="passwordHelpInline" class="error-form">
+                                            Ce champ est obligatoire
+                                        </small>
+                                    {% endif %}
                                     {% render_field form.name placeholder="Nom" %}
+
+                                    {% if form.email.errors  %}
+                                        <small id="passwordHelpInline" class="error-form">
+                                            {{ form.email.errors }}
+                                        </small>
+                                    {% endif %}
                                     {% render_field form.email placeholder="Email" %}
+
+                                    {% if form.phone_number.errors  %}
+                                        <small id="passwordHelpInline" class="error-form">
+                                            {{ form.phone_number.errors }}
+                                        </small>
+                                    {% endif %}
                                     {% render_field form.phone_number placeholder="Numéro de téléphone" %}
+
+                                    {% if form.message.errors  %}
+                                        <small id="passwordHelpInline" class="error-form">
+                                            {{ form.message.errors }}
+                                        </small>
+                                    {% endif %}
                                     {% render_field form.message placeholder="Message" %}
-                                    <button type="submit" class="site-btn">Send Message</button>
+                                    <button type="submit" class="site-btn">Envoyer</button>
                                 </form>
                             </div>
                         </div>
