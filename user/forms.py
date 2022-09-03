@@ -28,8 +28,7 @@ class UserContactForm(forms.ModelForm):
             "name",
             "email",
             "phone_number",
-            "created",
-            "updated",
+            "message",
         ]
 
 

@@ -1,6 +1,7 @@
 
 {% extends 'front/base/base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
     {% block "content" %}
         <!-- Breadcrumb Section Begin -->
@@ -69,11 +70,12 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="contact__form">
                                 <h3>Besoin d'aide ? Contactez nous.</h3>
-                                <form action="{% url 'user_us' %}">
-                                    <input type="text" placeholder="Name">
-                                    <input type="text" placeholder="Email">
-                                    <input type="text" placeholder="Website">
-                                    <textarea placeholder="Message"></textarea>
+                                <form action="{% url 'user_us' %}" method="POST">
+                                    {% csrf_token %}
+                                    {% render_field form.name placeholder="Nom" %}
+                                    {% render_field form.email placeholder="Email" %}
+                                    {% render_field form.phone_number placeholder="Numéro de téléphone" %}
+                                    {% render_field form.message placeholder="Message" %}
                                     <button type="submit" class="site-btn">Send Message</button>
                                 </form>
                             </div>

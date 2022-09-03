@@ -11,3 +11,7 @@ class Service(admin.ModelAdmin):
 class Appointmen(admin.ModelAdmin):
     list_display = ["user", "name", "email"]
 
+@admin.register(models.Contact)
+class Contact(admin.ModelAdmin):
+    list_display = ["message", "name", "email", "phone_number"]
+
